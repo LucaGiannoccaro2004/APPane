@@ -4,7 +4,7 @@
         var $hostname = "localhost";
         var $username = "root";
         var $password = "";
-        var $database = "appane";
+        var $database = "giannoccaro";
 
         private static $instance;
         private $connection;

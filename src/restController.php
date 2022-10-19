@@ -2,6 +2,8 @@
 
 	require_once("restHandlers/LoginRestHandler.php");
 	require_once("restHandlers/SigninRestHandler.php");
+	require_once("restHandlers/SessionRestHandler.php");
+	require_once("restHandlers/CategorieRestHandler.php");
 
 	session_start();
 
@@ -24,6 +26,17 @@
 
 	function handleGet(){
 		$api = (isset($_GET["api"]) ? $_GET["api"] : "");
+		switch($api){
+			case "categories":
+				$view = (isset($_GET["view"]) ? $_GET["view"] : "");
+				switch($view){
+					case "all":
+						$loginRestHandler = new CategorieRestHandler();
+						$loginRestHandler->getAll();
+						break;
+				}
+				break;
+		}
 	}
 
 	function handlePost(){

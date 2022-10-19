@@ -3,3 +3,4 @@ RewriteEngine on
 
 RewriteRule ^users/login src/restController.php [qsa]
 RewriteRule ^users/signin src/restController.php [qsa]
+RewriteRule ^categories/list src/restController.php?api=categories&view=all [qsa]
