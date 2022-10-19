@@ -1,8 +1,69 @@
-html, body{height: 1200px}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 #header {
     width: 100%;
-    height: 15%;
+    height: 22vh;
     background-color: #ffd6b6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+#logo img {
+    height: 100%;
+}
+
+#loginBtn img {
+    height: 30%;
+}
+
+#cart {
+    height: 22vh;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    margin-right: 1%;
+}
+
+#cart img {
+    height: 30%; 
+    margin: 1vh;
+}
+
+#navbar {
+    width: 100%;
+    height: 11vh;
+    background-color: #5c2626;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#categories {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #5c2626;
+}
+
+#categories li {
+    float: left;
+}
+
+#categories li a {
+    display: block;
+    color: #ffd6b6;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+#categories li a:hover {
+    background-color: #111111;
+  }
 
