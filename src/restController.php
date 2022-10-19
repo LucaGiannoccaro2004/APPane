@@ -36,6 +36,9 @@
 						break;
 				}
 				break;
+			case "adminAuth":
+				!auth($_COOKIE["token"], "Admin") ? header("location: http://localhost/APPane/public/") : true;
+				break;
 		}
 	}
 
@@ -59,6 +62,13 @@
 
 	function handleDelete(){
 		
+	}
+
+	function auth($token, $typeRequired){
+		if(isset($_SESSION['token']) && $_SESSION['token'] == $token && $_SESSION['tipo'] == $typeRequired)
+			return true;
+		else
+			return false;
 	}
 
 

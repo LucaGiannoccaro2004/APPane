@@ -18,12 +18,19 @@
 				$token = md5(uniqid(rand(), true));
 				$sessionDAO = new SessionDAO(Database::getInstance()->getConnection());
 				$sessionDAO->createSession($rawData->id, $token);
+				$_SESSION['token'] = $token;
+				setcookie("token", $token, time() + (86400 * 30), "/");
+				$_SESSION['email'] = $rawData->email;
+				$_SESSION['indirizzo'] = $rawData->indirizzo;
+				$_SESSION['note'] = $rawData->note;
+				$_SESSION['tipo'] = $rawData->tipo;
 				$rawData = array(
 					'auth' => '1', 
 					"token" => $token,
 					"email" => $rawData->email,
 					"indirizzo" => $rawData->indirizzo,
-					"note" => $rawData->note);	
+					"note" => $rawData->note,
+					"tipo" => $rawData->tipo);	
 				$statusCode = 200;
 			}
 
