@@ -1,8 +1,8 @@
 Options +FollowSymlinks
 RewriteEngine on
 
-RewriteRule ^admin/* src/restController.php?api=adminAuth [qsa]
 
 RewriteRule ^users/login src/restController.php [qsa]
 RewriteRule ^users/signin src/restController.php [qsa]
 RewriteRule ^categories/list src/restController.php?api=categories&view=all [qsa]
+RewriteRule ^categories/update src/restController.php [qsa]

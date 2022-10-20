@@ -20,5 +20,18 @@
 			echo $this->formatResponse($rawData, $statusCode);
 		}
 
+		function updateById($categoria, $id) {	
+			$userDAO  = new CategorieDAO(Database::getInstance()->getConnection());
+			$rawData = $userDAO->updateById($categoria, $id);
+			
+			if($rawData) {
+				$statusCode = 200;	
+			} else {
+				$statusCode = 404;
+			}
+
+			echo $this->formatResponse($rawData, $statusCode);
+		}
+
 	}
 ?>
