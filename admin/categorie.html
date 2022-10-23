@@ -38,17 +38,38 @@
                   </div>
             </div>
             <h1>Gestisci le categorie dei tuoi prodotti</h1>
+            <div id="addButton">+ Aggiungi</div>
             <div id="container"></div>
-                <div id="overlay">
-                    <div id="form">
-                        <button id="cross">&cross;</button>
-                        <h1>Modifica la categoria!</h1>
-                        <form>
-                            <input type="text" placeholder="Inserisci il nuovo nome" class="txt" id="nome"/>
-                            <input type="button" value="Invia" id="btn"/>
-                        </form>
-                    </div>
+            <div id="overlay">
+
+                <div id="addForm">
+                    <button class="cross">&cross;</button>
+                    <h1>Crea la categoria!</h1>
+                    <form>
+                        <input type="text" placeholder="Inserisci il nuovo nome" class="txt" id="nomeAggiunta"/>
+                        <input type="button" value="Invia" id="addSubmit" class="btn"/>
+                    </form>
                 </div>
+
+                <div id="modifyForm">
+                    <button class="cross">&cross;</button>
+                    <h1>Modifica la categoria!</h1>
+                    <form>
+                        <input type="text" placeholder="Inserisci il nuovo nome" class="txt" id="nomeModifica"/>
+                        <input type="button" value="Invia" id="modifySubmit" class="btn"/>
+                    </form>
+                </div>
+
+                <div id="deleteForm">
+                    <button class="cross">&cross;</button>
+                    <h1>Sei sicuro di voler eliminare?</h1>
+                    <form>
+                        <input type="button" value="Invia" id="deleteSubmit" class="btn"/>
+                        <input type="button" value="Annulla" class="btn"/>
+                    </form>
+                </div>
+
+            </div>
         </div>
 
 

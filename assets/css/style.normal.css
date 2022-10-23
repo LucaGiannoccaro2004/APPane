@@ -213,6 +213,27 @@
     transform: translate(0, -11px) rotate(45deg);
 }
 
+#addButton{
+    width: fit-content;
+    margin-left: 20%;
+    border: 2px solid white;
+	background-color: #2ecc71;
+    color: white;
+	padding: 7px;
+	border-radius: 15px;
+}
+
+#addButton:hover{
+    width: fit-content;
+    margin-left: 20%;
+    border: 2px solid #2ecc71;
+	background-color: white;
+    color: #2ecc71;
+	padding: 7px;
+	border-radius: 15px;
+    cursor: pointer;
+}
+
 #container{
     display: flex;
     flex-direction: column;
@@ -235,6 +256,11 @@
 .element button{
     border-radius: 10px;
     padding: 3%;
+    margin: 2%;
+}
+
+.element button:hover{
+    cursor: pointer;
 }
 
 .modifyButton{
@@ -262,7 +288,7 @@
 
 }
 
-#form{
+#addForm, #modifyForm, #deleteForm{
 	background-color: white;
 	width: 30%;
 	border: 2px solid #2ecc71;
@@ -274,11 +300,15 @@
     align-items: center;
 }
 
-#overlay, #form{
+#deleteForm{
+    border: 2px solid red;
+}
+
+#overlay, #addForm, #modifyForm, #deleteForm{
     display: none;
 }
 
-#cross{
+.cross{
 	align-self: flex-end;
     color: #cc2e2e;
 	font-size: 25;
@@ -287,10 +317,17 @@
 	border: 0
 }
 
-#form form{
+#addForm form, #modifyForm form{
     height: 10vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#deleteForm form{
+    height: 10vh;
+    display: flex;
     justify-content: space-around;
     align-items: center;
 }
@@ -304,7 +341,7 @@ input{
 	margin: 10% 0;
 }
 
-#btn{
+.btn{
     border: 2px solid #2ecc71;
 	background-color: white;
     color: #2ecc71;
@@ -312,8 +349,19 @@ input{
 	border-radius: 5px;
 }
 
-#btn:hover{
+.btn:hover{
 	background-color: #2ecc71;
+	color: white;
+	border: 2px solid white;
+}
+
+#deleteSubmit{
+    border: 2px solid red;
+    color: red;
+}
+
+#deleteSubmit:hover{
+	background-color: red;
 	color: white;
 	border: 2px solid white;
 }

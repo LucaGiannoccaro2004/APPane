@@ -1,13 +1,13 @@
 <?php
 
-    require_once("dao/bean/Categorie.php");
+    require_once("dao/bean/Ingredient.php");
 
-    class CategorieDAO{
+    class IngredientDAO{
 
-        var $selectAll = "SELECT * FROM tcategorie;";
-        var $insert = "INSERT INTO tcategorie(categoria) VALUES (?)";
-        var $updateById = "UPDATE tcategorie SET categoria=? WHERE id=?";
-        var $deleteById = "DELETE FROM tcategorie WHERE id=?";
+        var $selectAll = "SELECT * FROM tingredienti;";
+        var $insert = "INSERT INTO tingredienti(nome, descrizione) VALUES (?, ?)";
+        var $updateById = "UPDATE tingredienti SET nome=?, descrizione=? WHERE id=?";
+        var $deleteById = "DELETE FROM tingredienti WHERE id=?";
         var $connection;
 
         public function __construct($connection){
@@ -21,19 +21,19 @@
             $list = [];
             if ($result->num_rows > 0)
                 while($row = $result->fetch_assoc())
-                    $list[] = new Categorie($row['id'], $row['categoria']);
+                    $list[] = new Ingredient($row['id'], $row['nome'], $row['descrizione']);
             return $list;
         }
 
-        public function insert($categoria){
+        public function insert($nome, $descrizione){
             $prepared = $this->connection->prepare($this->insert);
-            $prepared->bind_param("s", $categoria);
+            $prepared->bind_param("ss", $nome, $descrizione);
             return $prepared->execute();
         }
 
-        public function updateById($categoria, $id){
+        public function updateById($nome, $descrizione, $id){
             $prepared = $this->connection->prepare($this->updateById);
-            $prepared->bind_param("si", $categoria, $id);
+            $prepared->bind_param("ssi", $nome, $descrizione, $id);
             return $prepared->execute();
         }
 

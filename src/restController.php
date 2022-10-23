@@ -4,6 +4,7 @@
 	require_once("restHandlers/SigninRestHandler.php");
 	require_once("restHandlers/SessionRestHandler.php");
 	require_once("restHandlers/CategorieRestHandler.php");
+	require_once("restHandlers/IngredientRestHandler.php");
 
 	session_start();
 
@@ -36,6 +37,15 @@
 						break;
 				}
 				break;
+			case "ingredients":
+				$view = (isset($_GET["view"]) ? $_GET["view"] : "");
+				switch($view){
+					case "all":
+						$loginRestHandler = new IngredientRestHandler();
+						$loginRestHandler->getAll();
+						break;
+				}
+				break;
 			// case "adminAuth":
 			// 	!auth($_COOKIE["token"], "Admin") ? header("location: http://localhost/APPane/public/") : header("location: http://localhost/APPane/authAdmin/".$_GET["page"]);
 				
@@ -54,12 +64,19 @@
 				$signinRestHandler = new SigninRestHandler();
 				$signinRestHandler->handleSignin($_POST['email'], $_POST['password'], $_POST['indirizzo'], $_POST['note']);
 				break;
+			case "categories":
+				$paintsRestHandler = new CategorieRestHandler();
+				$paintsRestHandler->insert($_POST['categoria']);
+				break;
+			case "ingredients":
+				$paintsRestHandler = new IngredientRestHandler();
+				$paintsRestHandler->insert($_POST['nome'], $_POST['descrizione']);
+				break;
 		}
 	}
 
 	function handlePut(){
 		$_PUT = createGlobArray();
-		echo var_dump($_PUT);
 		$api = (isset($_PUT["api"]) ? $_PUT["api"] : "");
 		switch($api){
 			case "categories":
@@ -68,9 +85,17 @@
 					case "byId":
 						$categoria = (isset($_PUT["categoria"]) ? $_PUT["categoria"] : "");
 						$id = (isset($_PUT["id"]) ? $_PUT["id"] : "");
-						echo $categoria.$id;
 						$paintsRestHandler = new CategorieRestHandler();
 						$paintsRestHandler->updateById($categoria, $id);
+						break;
+				}
+				break;
+			case "ingredients":
+				$view = (isset($_PUT["update"]) ? $_PUT["update"] : "");
+				switch($view){
+					case "byId":
+						$paintsRestHandler = new IngredientRestHandler();
+						$paintsRestHandler->updateById($_PUT["nome"], $_PUT["descrizione"], $_PUT["id"]);
 						break;
 				}
 				break;
@@ -78,7 +103,28 @@
 	}
 
 	function handleDelete(){
-		
+		$_DELETE = createGlobArray();
+		$api = (isset($_DELETE["api"]) ? $_DELETE["api"] : "");
+		switch($api){
+			case "categories":
+				$view = (isset($_DELETE["delete"]) ? $_DELETE["delete"] : "");
+				switch($view){
+					case "byId":
+						$paintsRestHandler = new CategorieRestHandler();
+						$paintsRestHandler->deleteById($_DELETE['id']);
+						break;
+				}
+				break;
+			case "ingredients":
+				$view = (isset($_DELETE["delete"]) ? $_DELETE["delete"] : "");
+				switch($view){
+					case "byId":
+						$paintsRestHandler = new IngredientRestHandler();
+						$paintsRestHandler->deleteById($_DELETE['id']);
+						break;
+				}
+				break;
+		}
 	}
 
 	function auth($token, $typeRequired){
@@ -91,22 +137,15 @@
 	
 	function createGlobArray(){
 		$form_data= json_encode(file_get_contents("php://input"));
-			echo var_dump($form_data);
 			$key_size=52;
 			$key=substr($form_data, 1, $key_size);
-			echo var_dump($key);
 			$acc_params=explode($key,$form_data);
-			echo var_dump($acc_params);
 			array_shift($acc_params);
-			echo var_dump($acc_params);
-	
-			echo var_dump($acc_params);
 			foreach ($acc_params as $item){
 				$start_key=' name=\"';
 				$end_key='\"\r\n\r\n';
 				$start_key_pos=strpos($item,$start_key)+strlen($start_key);
 				$end_key_pos=strpos($item,$end_key);
-				echo var_dump($item);
 				$key=substr($item, $start_key_pos, ($end_key_pos-$start_key_pos));
 				
 				$end_value='\r\n';

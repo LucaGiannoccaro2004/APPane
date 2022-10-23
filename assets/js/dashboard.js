@@ -20,6 +20,14 @@ new Xhr("GET", "categories/list").makeRequest(handleResponse, "application/json"
 
 var id;
 
+document.getElementById("addButton").addEventListener("click", ()=>{
+    "use strict";
+    window.$("#overlay").fadeIn();
+    window.$("#overlay").css("display", "flex");
+    window.$("#addForm").show();
+    window.$("#addForm").css("display", "flex");
+});
+
 function handleResponse(){
     let result = JSON.parse(this.response);
     for(let i=0; i<result.length; i++){
@@ -37,13 +45,21 @@ function handleResponse(){
             "use strict";
             window.$("#overlay").fadeIn();
             window.$("#overlay").css("display", "flex");
-            window.$("#form").show();
-            window.$("#form").css("display", "flex");
+            window.$("#modifyForm").show();
+            window.$("#modifyForm").css("display", "flex");
             id = modify.parentNode.parentNode.getAttribute("id");
         });
         let remove = document.createElement("button");
         remove.classList.add("removeButton");
         remove.textContent = "Rimuovi";
+        remove.addEventListener("click", ()=>{
+            "use strict";
+            window.$("#overlay").fadeIn();
+            window.$("#overlay").css("display", "flex");
+            window.$("#deleteForm").show();
+            window.$("#deleteForm").css("display", "flex");
+            id = modify.parentNode.parentNode.getAttribute("id");
+        });
         buttons.appendChild(modify);
         buttons.appendChild(remove);
         element.appendChild(nome);
@@ -52,22 +68,44 @@ function handleResponse(){
     }
 }
 
-
-window.$("#ovrlay").click(function () {
-
-});
-window.$("#cross").click(function () {
+window.$(".cross").click(function () {
 	"use strict";
 	window.$("#overlay").hide();
-	window.$("#form").hide();
+	window.$("#modifyForm").hide();
 });
 
-window.$("#btn").click(function () {
+window.$("#addSubmit").click(function () {
+    let formData = new FormData();
+    formData.append('api', "categories");
+    formData.append("categoria", String(document.getElementById("nomeAggiunta").value));
+    formData.append("e", "e");
+    new Xhr("POST", "categories/insert").makeRequest(function(){}, "application/json", formData);
+    window.$("#overlay").hide();
+	window.$("#addForm").hide();
+    location.reload();
+});
+
+window.$("#modifySubmit").click(function () {
     let formData = new FormData();
     formData.append('api', "categories");
     formData.append('update', "byId");
     formData.append('id', id);
-    formData.append("categoria", String(document.getElementById("nome").value));
+    formData.append("categoria", String(document.getElementById("nomeModifica").value));
     formData.append("e", "e");
     new Xhr("PUT", "categories/update").makeRequest(function(){}, "application/json", formData);
+    window.$("#overlay").hide();
+	window.$("#modifyForm").hide();
+    location.reload();
+});
+
+window.$("#deleteSubmit").click(function () {
+    let formData = new FormData();
+    formData.append('api', "categories");
+    formData.append('delete', "byId");
+    formData.append('id', id);
+    formData.append("e", "e");
+    new Xhr("DELETE", "categories/delete").makeRequest(function(){}, "application/json", formData);
+    window.$("#overlay").hide();
+	window.$("#deleteForm").hide();
+    location.reload();
 });

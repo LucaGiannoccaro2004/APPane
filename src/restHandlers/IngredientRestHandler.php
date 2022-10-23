@@ -1,18 +1,17 @@
 <?php
 
 	require_once("util/SimpleRest.php");
-	require_once("dao/myDao/CategorieDAO.php");
+	require_once("dao/myDao/IngredientDAO.php");
 	require_once("database/Database.php");
 
-	class CategorieRestHandler extends SimpleRest{
+	class IngredientRestHandler extends SimpleRest{
 
 		function getAll() {	
-			$userDAO  = new CategorieDAO(Database::getInstance()->getConnection());
+			$userDAO  = new IngredientDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->selectAll();
 
 			if(empty($rawData)) {
 				$statusCode = 200;
-				$rawData = array('auth' => '0');	
 			} else {
 				$statusCode = 200;
 			}
@@ -20,9 +19,9 @@
 			echo $this->formatResponse($rawData, $statusCode);
 		}
 
-		function insert($categoria) {	
-			$userDAO  = new CategorieDAO(Database::getInstance()->getConnection());
-			$rawData = $userDAO->insert($categoria);
+		function insert($nome, $descrizione) {	
+			$userDAO  = new IngredientDAO(Database::getInstance()->getConnection());
+			$rawData = $userDAO->insert($nome, $descrizione);
 			
 			if($rawData) {
 				$statusCode = 200;	
@@ -33,9 +32,9 @@
 			echo $this->formatResponse($rawData, $statusCode);
 		}
 
-		function updateById($categoria, $id) {	
-			$userDAO  = new CategorieDAO(Database::getInstance()->getConnection());
-			$rawData = $userDAO->updateById($categoria, $id);
+		function updateById($nome, $descrizione, $id) {	
+			$userDAO  = new IngredientDAO(Database::getInstance()->getConnection());
+			$rawData = $userDAO->updateById($nome, $descrizione, $id);
 			
 			if($rawData) {
 				$statusCode = 200;	
@@ -47,7 +46,7 @@
 		}
 
 		function deleteById($id) {	
-			$userDAO  = new CategorieDAO(Database::getInstance()->getConnection());
+			$userDAO  = new IngredientDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->deleteById($id);
 			
 			if($rawData) {
