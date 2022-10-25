@@ -1,14 +1,28 @@
 <?php
 
 	require_once("util/SimpleRest.php");
-	require_once("dao/myDao/CategorieDAO.php");
+	require_once("dao/myDao/RecipeDAO.php");
 	require_once("database/Database.php");
 
-	class CategorieRestHandler extends SimpleRest{
+	class RecipeRestHandler extends SimpleRest{
 
 		function getAll() {	
-			$userDAO  = new CategorieDAO(Database::getInstance()->getConnection());
+			$userDAO  = new RecipeDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->selectAll();
+
+			if(empty($rawData)) {
+				$statusCode = 200;
+				$rawData = array('auth' => '0');	
+			} else {
+				$statusCode = 200;
+			}
+
+			echo $this->formatResponse($rawData, $statusCode);
+		}
+
+		function getById($id) {	
+			$userDAO  = new RecipeDAO(Database::getInstance()->getConnection());
+			$rawData = $userDAO->selectById($id);
 
 			if(empty($rawData)) {
 				$statusCode = 200;

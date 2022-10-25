@@ -14,3 +14,6 @@ RewriteRule ^ingredients/list src/restController.php?api=ingredients&view=all [q
 RewriteRule ^ingredients/insert src/restController.php [qsa]
 RewriteRule ^ingredients/update src/restController.php [qsa]
 RewriteRule ^ingredients/delete src/restController.php [qsa]
+
+RewriteRule ^recipes/list src/restController.php?api=recipes&view=all [qsa]
+RewriteRule ^recipes/([0-9]+)$ src/restController.php?api=recipes&view=byId&id=$1 [qsa]

@@ -245,6 +245,7 @@
     border: 1px solid gray;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 3%;
     margin-top: 1.5%;
 }
@@ -318,7 +319,6 @@
 }
 
 #addForm form, #modifyForm form{
-    height: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -364,4 +364,25 @@ input{
 	background-color: red;
 	color: white;
 	border: 2px solid white;
+}
+
+.ingredienti{
+    height: 10vh;
+    width: fit-content;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 15%;
+}
+
+.ingrediente{
+    background-color: rgb(177, 174, 174);
+    border-radius: 10px;
+    width: fit-content;
+    padding: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

@@ -2,7 +2,7 @@ class Xhr{
     
     constructor(method, path){
         this.method = method;
-        this.host = "http://localhost/APPane/";
+        this.host = "http://93.144.101.204/APPane/";
         this.path = path;
     }
 

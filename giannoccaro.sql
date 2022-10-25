@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 23, 2022 alle 18:10
+-- Creato il: Ott 25, 2022 alle 22:50
 -- Versione del server: 10.4.24-MariaDB
 -- Versione PHP: 8.1.6
 
@@ -37,8 +37,12 @@ CREATE TABLE `tcategorie` (
 --
 
 INSERT INTO `tcategorie` (`id`, `categoria`) VALUES
-(4, 'Pane'),
-(5, 'Ciao');
+(13, 'Pane'),
+(15, 'Focacce'),
+(16, 'Dolci'),
+(23, 'Cani'),
+(24, 'Gatti'),
+(25, 'Pesci');
 
 -- --------------------------------------------------------
 
@@ -62,6 +66,84 @@ CREATE TABLE `tclienti` (
 INSERT INTO `tclienti` (`id`, `email`, `password`, `indirizzo`, `note`, `tipoUtentiId`) VALUES
 (2, 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', 0, 'Non so programmare', 1),
 (3, 'admin@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 0, 'admin', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `tingredienti`
+--
+
+CREATE TABLE `tingredienti` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(32) NOT NULL,
+  `descrizione` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `tingredienti`
+--
+
+INSERT INTO `tingredienti` (`id`, `nome`, `descrizione`) VALUES
+(3, 'Lievito madre', 'naturale'),
+(4, 'Farina', 'Tipo 00'),
+(6, 'Sale', 'buono'),
+(7, 'Farina di segale', 'buona'),
+(8, 'Farina integrale', 'buonissima'),
+(9, 'Acqua', 'Del rubinetto di casa');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `tricette`
+--
+
+CREATE TABLE `tricette` (
+  `id` int(11) NOT NULL,
+  `idCategoria` int(11) NOT NULL,
+  `nome` varchar(32) NOT NULL,
+  `descrizione` text NOT NULL,
+  `prezzo` varchar(32) NOT NULL,
+  `stato` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `tricette`
+--
+
+INSERT INTO `tricette` (`id`, `idCategoria`, `nome`, `descrizione`, `prezzo`, `stato`) VALUES
+(1, 13, 'Pane Biango', 'buono', '3,50', 0),
+(2, 15, 'Pane Integrale', 'asdfa', '3,50', 0),
+(3, 25, 'Pane Segale', 'asdfadrhsdfg', '3,50', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `tricette_x_tingredienti`
+--
+
+CREATE TABLE `tricette_x_tingredienti` (
+  `id` int(11) NOT NULL,
+  `idRicetta` int(11) NOT NULL,
+  `idIngrediente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `tricette_x_tingredienti`
+--
+
+INSERT INTO `tricette_x_tingredienti` (`id`, `idRicetta`, `idIngrediente`) VALUES
+(1, 1, 9),
+(2, 1, 4),
+(3, 1, 6),
+(4, 1, 3),
+(5, 2, 9),
+(6, 2, 8),
+(7, 2, 3),
+(8, 2, 3),
+(9, 3, 9),
+(10, 3, 6),
+(11, 3, 6),
+(12, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -141,6 +223,27 @@ ALTER TABLE `tclienti`
   ADD KEY `tipoUtentiId` (`tipoUtentiId`);
 
 --
+-- Indici per le tabelle `tingredienti`
+--
+ALTER TABLE `tingredienti`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indici per le tabelle `tricette`
+--
+ALTER TABLE `tricette`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idCategoria` (`idCategoria`);
+
+--
+-- Indici per le tabelle `tricette_x_tingredienti`
+--
+ALTER TABLE `tricette_x_tingredienti`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idRicetta` (`idRicetta`),
+  ADD KEY `idIngrediente` (`idIngrediente`);
+
+--
 -- Indici per le tabelle `tsessioni`
 --
 ALTER TABLE `tsessioni`
@@ -161,13 +264,31 @@ ALTER TABLE `ttipoutenti`
 -- AUTO_INCREMENT per la tabella `tcategorie`
 --
 ALTER TABLE `tcategorie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT per la tabella `tclienti`
 --
 ALTER TABLE `tclienti`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT per la tabella `tingredienti`
+--
+ALTER TABLE `tingredienti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT per la tabella `tricette`
+--
+ALTER TABLE `tricette`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT per la tabella `tricette_x_tingredienti`
+--
+ALTER TABLE `tricette_x_tingredienti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `tsessioni`
@@ -190,6 +311,19 @@ ALTER TABLE `ttipoutenti`
 --
 ALTER TABLE `tclienti`
   ADD CONSTRAINT `tipoUtentiId` FOREIGN KEY (`tipoUtentiId`) REFERENCES `ttipoutenti` (`id`);
+
+--
+-- Limiti per la tabella `tricette`
+--
+ALTER TABLE `tricette`
+  ADD CONSTRAINT `idCategoria` FOREIGN KEY (`idCategoria`) REFERENCES `tcategorie` (`id`);
+
+--
+-- Limiti per la tabella `tricette_x_tingredienti`
+--
+ALTER TABLE `tricette_x_tingredienti`
+  ADD CONSTRAINT `idIngrediente` FOREIGN KEY (`idIngrediente`) REFERENCES `tingredienti` (`id`),
+  ADD CONSTRAINT `idRicetta` FOREIGN KEY (`idRicetta`) REFERENCES `tricette` (`id`);
 
 --
 -- Limiti per la tabella `tsessioni`
