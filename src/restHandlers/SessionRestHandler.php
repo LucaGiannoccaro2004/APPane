@@ -12,7 +12,6 @@
 
 			if(empty($rawData)) {
 				$statusCode = 401;
-				$rawData = array('auth' => '0');	
 			} else {
 				$statusCode = 200;
 			}
@@ -27,7 +26,6 @@
 
 			if(empty($rawData)) {
 				$statusCode = 401;
-				$rawData = array('auth' => '0');	
 			} else {
 				$statusCode = 200;
 			}

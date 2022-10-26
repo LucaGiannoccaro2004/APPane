@@ -2,6 +2,7 @@
 
 	require_once("restHandlers/LoginRestHandler.php");
 	require_once("restHandlers/SigninRestHandler.php");
+	require_once("restHandlers/AuthRestHandler.php");
 	require_once("restHandlers/SessionRestHandler.php");
 	require_once("restHandlers/CategorieRestHandler.php");
 	require_once("restHandlers/IngredientRestHandler.php");
@@ -78,6 +79,11 @@
 				$signinRestHandler = new SigninRestHandler();
 				$signinRestHandler->handleSignin($_POST['email'], $_POST['password'], $_POST['indirizzo'], $_POST['note']);
 				break;
+			case "auth":
+				$view = (isset($_POST["auth"]) ? $_POST["auth"] : "");
+				$signinRestHandler = new AuthRestHandler();
+				$signinRestHandler->handleAuth($_POST['token'], $view);
+				break;
 			case "categories":
 				$paintsRestHandler = new CategorieRestHandler();
 				$paintsRestHandler->insert($_POST['categoria']);
@@ -140,14 +146,6 @@
 				break;
 		}
 	}
-
-	function auth($token, $typeRequired){
-		if(isset($_SESSION['token']) && $_SESSION['token'] == $token && $_SESSION['tipo'] == $typeRequired)
-			return true;
-		else
-			return false;
-	}
-
 	
 	function createGlobArray(){
 		$form_data= json_encode(file_get_contents("php://input"));

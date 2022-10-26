@@ -18,8 +18,11 @@
             $prepared->execute();
             $result = $prepared->get_result();
             $list = [];
-            if ($session = $result->fetch_assoc())
-                return new Session($session['id'], $session['clienteId'], $session['token'], $session['timestamp']);
+            if ($session = $result->fetch_assoc()){
+                $userDAO  = new UserDAO(Database::getInstance()->getConnection());
+			    $user = $userDAO->selectById($session['clienteId']);
+                return new Session($session['id'], $user, $session['token'], $session['timestamp']);
+            }
             return $list;
         }
 
