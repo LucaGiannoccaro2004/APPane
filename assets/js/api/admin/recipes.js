@@ -75,9 +75,23 @@ function handleResponse(){
     }
 }
 
-// function compileForm(element){
-//     new Xhr("GET", "recipes/" + element.getAttribute("id")).makeRequest(, "application/json", undefined);
-// }
+function compileForm(element){
+    new Xhr("GET", "recipes/" + element.getAttribute("id")).makeRequest(function(element){
+        let result = JSON.parse(this.response);
+        document.getElementById("nomeModifica").value = result.nome;
+        document.getElementById("descrizioneModifica").value = result.descrizione;
+        document.getElementById("prezzoModifica").value = result.prezzo;
+        let divIngredienti = document.getElementById("modificaIngredienti");
+        let vett = result.ingredienti;
+        for(let j=0; j<vett.length; j++){
+            let ingrediente = document.createElement("div");
+            ingrediente.classList.add("ingrediente");
+            ingrediente.setAttribute("id", vett[j].id);
+            ingrediente.textContent = vett[j].nome;
+            divIngredienti.appendChild(ingrediente);
+        }
+    }, "application/json", undefined);
+}
 
 window.$(".cross").click(function () {
 	"use strict";

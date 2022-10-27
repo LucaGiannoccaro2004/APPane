@@ -63,7 +63,7 @@
                     if ($ingredientResult->num_rows > 0)
                         while($ingredient = $ingredientResult->fetch_assoc())
                             $ingredients[] = new Ingredient($ingredient['id'], $ingredient['nome'], $ingredient['descrizione']);
-                    $list[] = new Recipe($row['id'], $row['categoria'], $row['nome'], $row['descrizione'], $row['prezzo'], $row['stato'], $ingredients);
+                    $list = new Recipe($row['id'], $row['categoria'], $row['nome'], $row['descrizione'], $row['prezzo'], $row['stato'], $ingredients);
                 }
             return $list;
         }
