@@ -26,6 +26,9 @@ function handleResponse(){
         element.setAttribute("id", result[i].id);
         element.classList.add("element");
 
+        let img = document.createElement("img");
+        img.src = result[i].foto;
+
         let nome = document.createElement("h3");
         nome.textContent = result[i].nome;
         let descrizione = document.createElement("p");
@@ -40,6 +43,7 @@ function handleResponse(){
 
         });
 
+        element.appendChild(img);
         element.appendChild(nome);
         element.appendChild(descrizione);
         element.appendChild(prezzo);
