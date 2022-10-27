@@ -1,6 +1,7 @@
 Options +FollowSymlinks
 RewriteEngine on
 
+RewriteRule ^admin/$ admin/index.html
 
 RewriteRule ^users/login src/restController.php [qsa]
 RewriteRule ^users/signin src/restController.php [qsa]
@@ -17,5 +18,7 @@ RewriteRule ^ingredients/insert src/restController.php [qsa]
 RewriteRule ^ingredients/update src/restController.php [qsa]
 RewriteRule ^ingredients/delete src/restController.php [qsa]
 
-RewriteRule ^recipes/list src/restController.php?api=recipes&view=all [qsa]
-RewriteRule ^recipes/([0-9]+)$ src/restController.php?api=recipes&view=byId&id=$1 [qsa]
+RewriteRule ^products/list src/restController.php?api=products&view=all [qsa]
+RewriteRule ^products/([0-9]+)$ src/restController.php?api=products&view=byId&id=$1 [qsa]
+RewriteRule ^products/published src/restController.php?api=products&view=published [qsa]
+

@@ -1,13 +1,13 @@
 <?php
 
 	require_once("util/SimpleRest.php");
-	require_once("dao/myDao/RecipeDAO.php");
+	require_once("dao/myDao/ProductDAO.php");
 	require_once("database/Database.php");
 
-	class RecipeRestHandler extends SimpleRest{
+	class ProductRestHandler extends SimpleRest{
 
 		function getAll() {	
-			$userDAO  = new RecipeDAO(Database::getInstance()->getConnection());
+			$userDAO  = new ProductDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->selectAll();
 
 			if(empty($rawData)) {
@@ -21,7 +21,7 @@
 		}
 
 		function getById($id) {	
-			$userDAO  = new RecipeDAO(Database::getInstance()->getConnection());
+			$userDAO  = new ProductDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->selectById($id);
 
 			if(empty($rawData)) {
@@ -33,8 +33,21 @@
 			echo $this->formatResponse($rawData, $statusCode);
 		}
 
+		function getPublished() {	
+			$userDAO  = new ProductDAO(Database::getInstance()->getConnection());
+			$rawData = $userDAO->selectPublished();
+
+			if(empty($rawData)) {
+				$statusCode = 200;
+			} else {
+				$statusCode = 200;
+			}
+
+			echo $this->formatResponse($rawData, $statusCode);
+		}
+
 		function insert($categoria) {	
-			$userDAO  = new CategorieDAO(Database::getInstance()->getConnection());
+			$userDAO  = new ProductDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->insert($categoria);
 			
 			if($rawData) {
@@ -47,7 +60,7 @@
 		}
 
 		function updateById($categoria, $id) {	
-			$userDAO  = new CategorieDAO(Database::getInstance()->getConnection());
+			$userDAO  = new ProductDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->updateById($categoria, $id);
 			
 			if($rawData) {
@@ -60,7 +73,7 @@
 		}
 
 		function deleteById($id) {	
-			$userDAO  = new CategorieDAO(Database::getInstance()->getConnection());
+			$userDAO  = new ProductDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->deleteById($id);
 			
 			if($rawData) {

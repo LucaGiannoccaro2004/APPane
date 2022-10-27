@@ -6,7 +6,7 @@
 	require_once("restHandlers/SessionRestHandler.php");
 	require_once("restHandlers/CategorieRestHandler.php");
 	require_once("restHandlers/IngredientRestHandler.php");
-	require_once("restHandlers/RecipeRestHandler.php");
+	require_once("restHandlers/ProductRestHandler.php");
 
 	session_start();
 
@@ -48,16 +48,20 @@
 						break;
 				}
 				break;
-			case "recipes":
+			case "products":
 				$view = (isset($_GET["view"]) ? $_GET["view"] : "");
 				switch($view){
 					case "all":
-						$loginRestHandler = new RecipeRestHandler();
+						$loginRestHandler = new ProductRestHandler();
 						$loginRestHandler->getAll();
 						break;
 					case "byId":
-						$loginRestHandler = new RecipeRestHandler();
+						$loginRestHandler = new ProductRestHandler();
 						$loginRestHandler->getById($_GET['id']);
+						break;
+					case "published":
+						$loginRestHandler = new ProductRestHandler();
+						$loginRestHandler->getPublished();
 						break;
 				}
 				break;

@@ -1,6 +1,6 @@
 let container = document.getElementById("container");
 
-new Xhr("GET", "recipes/list").makeRequest(handleResponse, "application/json", undefined); 
+new Xhr("GET", "products/list").makeRequest(handleResponse, "application/json", undefined); 
 
 var id;
 
@@ -76,12 +76,13 @@ function handleResponse(){
 }
 
 function compileForm(element){
-    new Xhr("GET", "recipes/" + element.getAttribute("id")).makeRequest(function(element){
+    new Xhr("GET", "products/" + element.getAttribute("id")).makeRequest(function(element){
         let result = JSON.parse(this.response);
         document.getElementById("nomeModifica").value = result.nome;
         document.getElementById("descrizioneModifica").value = result.descrizione;
         document.getElementById("prezzoModifica").value = result.prezzo;
         let divIngredienti = document.getElementById("modificaIngredienti");
+        divIngredienti.innerHTML = "";
         let vett = result.ingredienti;
         for(let j=0; j<vett.length; j++){
             let ingrediente = document.createElement("div");
