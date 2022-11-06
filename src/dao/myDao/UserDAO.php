@@ -31,7 +31,7 @@
             $result = $prepared->get_result();
             $list;
             if ($user = $result->fetch_assoc())
-                $list = new User($user['id'], $user['email'], $user['password'], $user['indirizzo'], $user['note']);
+                return new User($user['id'], $user['email'], $user['password'], $user['indirizzo'], $user['note']);
             return $list;
         }
 

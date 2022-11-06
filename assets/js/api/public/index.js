@@ -25,7 +25,7 @@ document.getElementById("logout").addEventListener("click", ()=>{
     
 
 
-categories = document.getElementById("categories");
+let categories = document.getElementById("categories");
 
 new Xhr("GET", "categories/list").makeRequest(handleCategories, "application/json", undefined); 
 
@@ -193,8 +193,25 @@ function getItem(id){
             container.appendChild(element);
 
             
+
+
+            
         }
+        new Xhr("GET", "cart/list").makeRequest(compare, "application/json", undefined);
     }
 
-
+    function compare(){
+        let result = JSON.parse(this.response);
+        if(!Array.isArray(result))
+            result = [result];
+        for(let i=0; i<document.getElementById("homeContainer").children.length; i++){
+            let tmp = document.getElementById("homeContainer").children[i];
+            for(let j=0; j<result.length; j++)
+                if(document.getElementById("homeContainer").children[i].getAttribute("id") == result[j].idProdotto.id){
+                    document.getElementById("homeContainer").children[i].children[5].style.display = "flex";
+                    document.getElementById("homeContainer").children[i].children[5].children[1].value = result[j].quantita;
+                    document.getElementById("homeContainer").children[i].children[4].style.display = "none";
+                }
+        }
+    }
 }
