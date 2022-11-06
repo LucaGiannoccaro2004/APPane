@@ -29,9 +29,9 @@
             $prepared->bind_param("ss", $email, $password);
             $prepared->execute();
             $result = $prepared->get_result();
-            $list = [];
+            $list;
             if ($user = $result->fetch_assoc())
-                return new User($user['id'], $user['email'], $user['password'], $user['indirizzo'], $user['note']);
+                $list = new User($user['id'], $user['email'], $user['password'], $user['indirizzo'], $user['note']);
             return $list;
         }
 

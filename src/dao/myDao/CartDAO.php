@@ -15,8 +15,11 @@
                                         JOIN tcategorie ON tprodotti.idCategoria = tcategorie.id
                                         WHERE tcarrello.token = ?;";
 
+        var $updateQuantita = "UPDATE `tcarrello` SET `quantita`= ? WHERE idProdotto = ?";
+
         var $udateIdCliente = "UPDATE `tcarrello` SET `idCliente`= ? WHERE token = ?";
         var $insert = "INSERT INTO tcarrello(idCliente, idProdotto, quantita, token) VALUES(?, ?, ?, ?);";
+        var $delete = "DELETE FROM `tcarrello` WHERE idProdotto = ?";
         var $connection;
 
         public function __construct($connection){
@@ -47,6 +50,12 @@
             return $list;
         }
 
+        public function updateQuantita($idProdotto, $quantita){
+            $prepared = $this->connection->prepare($this->updateQuantita);
+            $prepared->bind_param("ii", $quantita, $idProdotto);
+            return $prepared->execute();
+        }
+
         public function udateIdCliente($idCliente, $token){
             $prepared = $this->connection->prepare($this->udateIdCliente);
             $prepared->bind_param("is", $idCliente, $token);
@@ -56,6 +65,12 @@
         public function insert($idCliente, $idProdotto, $quantita, $token){
             $prepared = $this->connection->prepare($this->insert);
             $prepared->bind_param("iiis", $idCliente, $idProdotto, $quantita, $token);
+            return $prepared->execute();
+        }
+
+        public function delete($idProdotto){
+            $prepared = $this->connection->prepare($this->delete);
+            $prepared->bind_param("i", $idProdotto);
             return $prepared->execute();
         }
     

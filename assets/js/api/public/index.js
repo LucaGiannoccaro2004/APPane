@@ -61,20 +61,55 @@ function getItem(id){
             qtyContainer.classList.add("qtyContainer");
 
 
+            let quantity = document.createElement("input");
+            quantity.value = 1;
+            quantity.classList.add("qty");
+            quantity.type = "button";
+
             let minus = document.createElement("input");
             minus.value = "-";
             minus.classList.add("qtyminus");
             minus.classList.add("minus");
             minus.type = "button";
+            minus.addEventListener("click", ()=>{
+                quantity.value = parseInt(quantity.value) - 1;
+                if(quantity.value == 0){
+                    quantity.value = 1;
+                    let formData = new FormData();
+                    formData.append("api", "cart");
+                    formData.append("delete", "byId");
+                    formData.append("idProdotto", result[i].id);
+                    formData.append("e", "e");
+                    new Xhr("DELETE", "cart/delete").makeRequest(()=>{}, "application/json", formData);
+                    button.style.display = "flex";
+                    qtyContainer.style.display = "none";
+                }else{
+                    let formData = new FormData();
+                    formData.append("api", "cart");
+                    formData.append("update", "quantita");
+                    formData.append("idProdotto", result[i].id);
+                    formData.append("quantita", quantity.value)
+                    formData.append("e", "e");
+                    new Xhr("PUT", "cart/update").makeRequest(()=>{}, "application/json", formData);
+                }
+            })
             let plus = document.createElement("input");
             plus.value = "+";
             plus.classList.add("qtyplus");
             plus.classList.add("plus");
             plus.type = "button";
-            let quantity = document.createElement("input");
-            quantity.value = 0;
-            quantity.classList.add("qty");
-            quantity.type = "button";
+            plus.addEventListener("click", ()=>{
+                quantity.value = parseInt(quantity.value) + 1;
+                let formData = new FormData();
+                formData.append("api", "cart");
+                formData.append("update", "quantita");
+                formData.append("idProdotto", result[i].id);
+                formData.append("quantita", quantity.value)
+                formData.append("e", "e");
+                new Xhr("PUT", "cart/update").makeRequest(()=>{}, "application/json", formData);
+            })
+
+
 
             qtyContainer.appendChild(minus);
             qtyContainer.appendChild(quantity);

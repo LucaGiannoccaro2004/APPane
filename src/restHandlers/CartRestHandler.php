@@ -34,6 +34,19 @@
 			echo $this->formatResponse($rawData, $statusCode);
 		}
 
+		public function updateQuantita($idProdotto, $quantita){
+			$userDAO  = new CartDAO(Database::getInstance()->getConnection());
+			$rawData = $userDAO->updateQuantita($idProdotto, $quantita);
+
+			if(empty($rawData)) {
+				$statusCode = 200;
+			} else {
+				$statusCode = 200;
+			}
+
+			echo $this->formatResponse($rawData, $statusCode);
+        }
+
 		function udateIdCliente() {	
 			$userDAO  = new CartDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->udateIdCliente($_SESSION['id'], $_SESSION['cartToken']);
@@ -61,6 +74,19 @@
 
 			echo $this->formatResponse($rawData, $statusCode);
 		}
+
+		public function delete($idProdotto){
+			$userDAO  = new CartDAO(Database::getInstance()->getConnection());
+			$rawData = $userDAO->delete($idProdotto);
+
+			if(empty($rawData)) {
+				$statusCode = 200;
+			} else {
+				$statusCode = 200;
+			}
+
+			echo $this->formatResponse($rawData, $statusCode);
+        }
 
 	}
 ?>

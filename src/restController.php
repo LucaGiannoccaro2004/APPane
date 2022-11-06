@@ -145,6 +145,10 @@
 						$paintsRestHandler = new CartRestHandler();
 						$paintsRestHandler->udateIdCliente();
 						break;
+					case "quantita":
+						$paintsRestHandler = new CartRestHandler();
+						$paintsRestHandler->updateQuantita($_PUT['idProdotto'], $_PUT['quantita']);
+						break;
 				}
 				break;
 		}
@@ -169,6 +173,15 @@
 					case "byId":
 						$paintsRestHandler = new IngredientRestHandler();
 						$paintsRestHandler->deleteById($_DELETE['id']);
+						break;
+				}
+				break;
+			case "cart":
+				$view = (isset($_DELETE["delete"]) ? $_DELETE["delete"] : "");
+				switch($view){
+					case "byId":
+						$paintsRestHandler = new CartRestHandler();
+						$paintsRestHandler->delete($_DELETE['idProdotto']);
 						break;
 				}
 				break;

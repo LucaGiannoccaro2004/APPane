@@ -8,6 +8,7 @@ RewriteRule ^users/signin src/restController.php [qsa]
 
 RewriteRule ^cart/insert$ src/restController.php [qsa]
 RewriteRule ^cart/update$ src/restController.php [qsa]
+RewriteRule ^cart/delete$ src/restController.php [qsa]
 RewriteRule ^cart/list$ src/restController.php?api=cart&view=all [qsa]
 
 RewriteRule ^auth src/restController.php [qsa]

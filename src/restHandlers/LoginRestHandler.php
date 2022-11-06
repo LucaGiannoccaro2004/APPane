@@ -27,6 +27,10 @@
 					"email" => $rawData->email,
 					"indirizzo" => $rawData->indirizzo,
 					"note" => $rawData->note);	
+				if(isset($_SESSION['cartToken'])){
+					$userDAO  = new CartDAO(Database::getInstance()->getConnection());
+					$rawData = $userDAO->udateIdCliente($_SESSION['id'], $_SESSION['cartToken']);
+				}
 				$statusCode = 200;
 			}
 
