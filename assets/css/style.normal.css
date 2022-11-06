@@ -6,7 +6,7 @@
 
 #header {
     width: 100%;
-    height: 15vh;
+    height: 25vh;
     background-color: #ffd6b6;
     display: flex;
     justify-content: space-between;
@@ -14,12 +14,12 @@
 }
 
 #logo img {
-    height: 15vh;
+    height: 25vh;
 }
 
 
 #cart {
-    height: 15vh;
+    height: 25vh;
     width: 15%;
     display: flex;
     align-items: center;
@@ -173,6 +173,109 @@
 }
 
 #homeContainer .element button:hover{
+    border: 1px solid white;
+    color: white;
+    background-color: green;
+}
+
+#logCart {
+    height: 25vh;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 1%;
+}
+
+#logCart img {
+    height: 45%; 
+    margin: 1vh;
+}
+
+#logCart a{
+    text-decoration: none;
+    color: black;
+    font-size: 150%;
+    padding: 3% 5%;
+}
+
+#logCart a:hover{
+    border: 1px solid #5c2626;
+    border-radius: 10px;
+}
+
+#cartContainer{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#cartContainer .element{
+    width: 100%;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    margin-top: 1.5%;
+}
+
+#cartContainer .element .info{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+#cartContainer .element img{
+    width: 25%;
+    height: 35vh;
+}
+
+#cartContainer .element .info h1{
+    margin: 3% 0;
+}
+
+#cartContainer .element .info p{
+    text-justify: distribute;
+    height: 18vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#cartContainer .element .info h2{
+    align-self: flex-start;
+    margin: 3% 0;
+}
+
+#cartContainer .element button{
+    border: 1px solid red;
+    color: red;
+    background-color: white;
+    padding: 1%;
+    border-radius: 15px;
+    align-self: flex-end;
+}
+
+#cartContainer .element button:hover{
+    border: 1px solid white;
+    color: white;
+    background-color: red;
+}
+
+#submitOrder{
+    border: 1px solid green;
+    color: green;
+    background-color: white;
+    padding: 1%;
+    border-radius: 15px;
+    float: right;
+    margin: 2.5%;
+}
+
+#submitOrder:hover{
     border: 1px solid white;
     color: white;
     background-color: green;
