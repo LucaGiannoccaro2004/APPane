@@ -1,3 +1,30 @@
+if(localStorage.getItem("token") != undefined){
+    document.getElementById("login").textContent = "Ciao, " + localStorage.getItem("email");
+    document.getElementById("signin").style.display = "none";
+    document.getElementById("logout").style.display = "block";
+    document.getElementById("login").addEventListener("mouseover", ()=>{
+        document.getElementById("login").style.border = "1px solid #ffd6b6"
+        document.getElementById("login").href = "";
+    })
+}
+
+document.getElementById("logout").addEventListener("click", ()=>{
+    localStorage.clear();
+    document.getElementById("login").textContent = "Login";
+    document.getElementById("signin").style.display = "block";
+    document.getElementById("logout").style.display = "none";
+    document.getElementById("login").addEventListener("mouseover", ()=>{
+        document.getElementById("login").style.border = "1px solid #5c2626"
+        document.getElementById("login").href = "login.html";
+    })
+    let formData = new FormData();
+    formData.append("api", "logout");
+    new Xhr("POST", "users/logout").makeRequest(()=>{}, "application/json", formData); 
+    
+});
+    
+
+
 categories = document.getElementById("categories");
 
 new Xhr("GET", "categories/list").makeRequest(handleCategories, "application/json", undefined); 
@@ -24,12 +51,14 @@ function getItem(id){
     var id;
     
     function handleResponse(){
+
         let container = document.getElementById("homeContainer");
         container.innerHTML="";
         let result = JSON.parse(this.response);
         if(!Array.isArray(result))
             result = [result];
         for(let i=0; i<result.length; i++){
+            
             let element = document.createElement("div");
             element.setAttribute("id", result[i].id);
             element.classList.add("element");
@@ -47,7 +76,45 @@ function getItem(id){
             let button = document.createElement("button");
             button.textContent = "Aggiungi al Carrello";
             button.id="btnAggiungiCarrello";
-            button.addEventListener("click", ()=>{
+            $(button).click(()=>{
+
+
+                var imgtodrag = img;
+                var topoff = Math.round(imgtodrag.offsetTop);
+                var leftoff = Math.round(imgtodrag.offsetLeft);
+                var cart = $('#cartImg');
+                if (imgtodrag) {
+                    var imgclone = $(img).clone()
+                        .css({
+                        'opacity': '0.5',
+                            'position': 'absolute',
+                            'height': '150px',
+                            'width': '150px',
+                            'z-index': '100',
+                            'top' : topoff + 'px',
+                            'left' : leftoff + 'px'
+                    })
+                        .appendTo($('body'))
+                        .animate({
+                        'top': $(cart).offset().top + 10,
+                            'left': $(cart).offset().left + 10,
+                            'width': 75,
+                            'height': 75
+                    }, 1000, 'easeInOutExpo');
+                    
+                    // setTimeout(function () {
+                    //      $(cart).effect("shake", {
+                    //         times: 2
+                    //      }, 200);
+                    //  }, 1500);
+
+                    imgclone.animate({
+                        'width': 0,
+                            'height': 0
+                    }, function () {
+                        $(this).detach()
+                    });
+                }
                 let formData = new FormData();
                 formData.append("api", "cart");
                 formData.append("idProdotto", result[i].id);
@@ -124,6 +191,8 @@ function getItem(id){
             element.appendChild(button);
             element.appendChild(qtyContainer);
             container.appendChild(element);
+
+            
         }
     }
 

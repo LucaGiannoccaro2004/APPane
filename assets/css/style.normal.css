@@ -17,26 +17,38 @@
     height: 15vh;
 }
 
+.row{
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 2%;
+}
+
 
 #cart {
-    height: 15vh;
-    width: 15%;
+    height: 25vh;
+    width: fit-content;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-right: 1%;
+    margin-right: 10%;
 }
 
-#cart img {
-    height: 45%; 
-    margin: 1vh;
+#cartImg {
+    height: 8vh;     
 }
 
 #cart a{
+    border: 1px solid #ffd6b6;
     text-decoration: none;
     color: black;
     font-size: 150%;
     padding: 3% 5%;
+}
+
+#logout{
+    display: none;
 }
 
 #cart a:hover{
@@ -119,6 +131,7 @@
 #container{
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -185,3 +198,129 @@
 }
 input.qtyplus { width:25px; height:25px;}
 input.qtyminus { width:25px; height:25px;}
+
+#cartContainer{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#cartContainer .element{
+    width: 100%;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    margin-top: 1.5%;
+}
+
+#cartContainer .element .info{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+#cartContainer .element img{
+    width: 25%;
+    height: 35vh;
+}
+
+#cartContainer .element .info h1{
+    margin: 3% 0;
+}
+
+#cartContainer .element .info p{
+    text-justify: distribute;
+    height: 18vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#cartContainer .element .info h2{
+    align-self: flex-start;
+    margin: 3% 0;
+}
+
+#cartContainer .element button{
+    border: 1px solid red;
+    color: red;
+    background-color: white;
+    padding: 1%;
+    border-radius: 15px;
+    align-self: flex-end;
+}
+
+#cartContainer .element button:hover{
+    border: 1px solid white;
+    color: white;
+    background-color: red;
+}
+
+#submitOrder{
+    border: 1px solid green;
+    color: green;
+    background-color: white;
+    padding: 1%;
+    border-radius: 15px;
+    align-self: flex-end;
+    margin: 2.5%;
+}
+
+#submitOrder:hover{
+    border: 1px solid white;
+    color: white;
+    background-color: green;
+}
+
+#logCart {
+    height: 25vh;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 1%;
+}
+
+#logCart img {
+    height: 45%; 
+    margin: 1vh;
+}
+
+#logCart a{
+    text-decoration: none;
+    color: black;
+    font-size: 150%;
+    padding: 3% 5%;
+}
+
+#logCart a:hover{
+    border: 1px solid #5c2626;
+    border-radius: 10px;
+}
+
+#totale{
+    align-self: flex-end;
+    margin-right: 2.5%;
+}
+
+.zoom {
+    position: absolute;
+    width: 40px;
+    opacity: 0;
+    animation: zoom 1s linear forwards;
+}
+  
+  @keyframes zoom {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      top: 40px;
+      right: 40px;
+    }
+  }

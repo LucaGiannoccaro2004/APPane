@@ -17,7 +17,6 @@
 				$token = md5(uniqid(rand(), true));
 				$_SESSION['id'] = $rawData->id;
 				$_SESSION['token'] = $token;
-				setcookie("token", $token, time() + (86400 * 30), "/");
 				$_SESSION['email'] = $rawData->email;
 				$_SESSION['indirizzo'] = $rawData->indirizzo;
 				$_SESSION['note'] = $rawData->note;
@@ -29,7 +28,7 @@
 					"note" => $rawData->note);	
 				if(isset($_SESSION['cartToken'])){
 					$userDAO  = new CartDAO(Database::getInstance()->getConnection());
-					$rawData = $userDAO->udateIdCliente($_SESSION['id'], $_SESSION['cartToken']);
+					$tmp = $userDAO->udateIdCliente($_SESSION['id'], $_SESSION['cartToken']);
 				}
 				$statusCode = 200;
 			}

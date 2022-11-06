@@ -20,6 +20,7 @@
         var $udateIdCliente = "UPDATE `tcarrello` SET `idCliente`= ? WHERE token = ?";
         var $insert = "INSERT INTO tcarrello(idCliente, idProdotto, quantita, token) VALUES(?, ?, ?, ?);";
         var $delete = "DELETE FROM `tcarrello` WHERE idProdotto = ?";
+        var $deleteIdCliente = "DELETE FROM `tcarrello` WHERE idCliente = ?";
         var $connection;
 
         public function __construct($connection){
@@ -71,6 +72,12 @@
         public function delete($idProdotto){
             $prepared = $this->connection->prepare($this->delete);
             $prepared->bind_param("i", $idProdotto);
+            return $prepared->execute();
+        }
+
+        public function deleteIdCliente($idCliente){
+            $prepared = $this->connection->prepare($this->deleteIdCliente);
+            $prepared->bind_param("i", $idCliente);
             return $prepared->execute();
         }
     

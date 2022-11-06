@@ -6,6 +6,7 @@
 	require_once("restHandlers/CategorieRestHandler.php");
 	require_once("restHandlers/ProductRestHandler.php");
 	require_once("restHandlers/CartRestHandler.php");
+	require_once("restHandlers/OrdineRestHandler.php");
 
 	session_start();
 
@@ -94,6 +95,10 @@
 				$signinRestHandler = new SigninRestHandler();
 				$signinRestHandler->handleSignin($_POST['email'], $_POST['password'], $_POST['indirizzo'], $_POST['note']);
 				break;
+			case "logout":
+				$_SESSION = array();
+				session_destroy();
+				break;
 			case "auth":
 				$signinRestHandler = new AuthRestHandler();
 				$signinRestHandler->handleAuth($_POST['token']);
@@ -107,9 +112,16 @@
 				$paintsRestHandler->insert($_POST['nome'], $_POST['descrizione']);
 				break;
 			case "cart":
-				echo "cioa";
 				$paintsRestHandler = new CartRestHandler();
 				$paintsRestHandler->insert($_POST['idProdotto'], $_POST['quantita']);
+				break;
+			case "ordineMaster":
+				$paintsRestHandler = new OrdineRestHandler();
+				$paintsRestHandler->insertMaster($_POST['numero'], $_POST['nota']);
+				break;
+			case "ordineDetail":
+				$paintsRestHandler = new OrdineRestHandler();
+				$paintsRestHandler->insertDetail($_POST['idProdotto'], $_POST['quantita'], $_POST['prezzo']);
 				break;
 		}
 	}
@@ -182,6 +194,10 @@
 					case "byId":
 						$paintsRestHandler = new CartRestHandler();
 						$paintsRestHandler->delete($_DELETE['idProdotto']);
+						break;
+					case "byIdCliente":
+						$paintsRestHandler = new CartRestHandler();
+						$paintsRestHandler->deleteIdCliente();
 						break;
 				}
 				break;

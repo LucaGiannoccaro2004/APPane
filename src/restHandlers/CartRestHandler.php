@@ -7,21 +7,22 @@
 	class CartRestHandler extends SimpleRest{
 
 		function selectByToken() {	
-			echo $_SESSION['cartToken'];
-			$userDAO  = new CartDAO(Database::getInstance()->getConnection());
-			$rawData = $userDAO->selectByToken($_SESSION['cartToken']);
-
-			if(empty($rawData)) {
-				$statusCode = 200;
-			} else {
-				$statusCode = 200;
+			if(isset($_SESSION['cartToken'])){
+				$userDAO  = new CartDAO(Database::getInstance()->getConnection());
+				$rawData = $userDAO->selectByToken($_SESSION['cartToken']);
+	
+				if(empty($rawData)) {
+					$statusCode = 200;
+				} else {
+					$statusCode = 200;
+				}
+	
+				echo $this->formatResponse($rawData, $statusCode);
 			}
 
-			echo $this->formatResponse($rawData, $statusCode);
 		}
 
 		function selectByIdCliente() {	
-			echo $_SESSION['id'];
 			$userDAO  = new CartDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->selectByIdCliente($_SESSION['id']);
 
@@ -78,6 +79,19 @@
 		public function delete($idProdotto){
 			$userDAO  = new CartDAO(Database::getInstance()->getConnection());
 			$rawData = $userDAO->delete($idProdotto);
+
+			if(empty($rawData)) {
+				$statusCode = 200;
+			} else {
+				$statusCode = 200;
+			}
+
+			echo $this->formatResponse($rawData, $statusCode);
+        }
+
+		public function deleteIdCliente(){
+			$userDAO  = new CartDAO(Database::getInstance()->getConnection());
+			$rawData = $userDAO->deleteIdCliente($_SESSION['id']);
 
 			if(empty($rawData)) {
 				$statusCode = 200;
