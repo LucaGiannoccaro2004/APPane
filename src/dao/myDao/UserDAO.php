@@ -4,9 +4,9 @@
 
     class UserDAO{
 
-        var $selectById = "SELECT tclienti.id, email, password, indirizzo, note, tipo FROM tclienti JOIN ttipoUtenti ON tclienti.tipoUtentiId = ttipoUtenti.id WHERE tclienti.id = ?;";
-        var $selectByEmailAndPassword = "SELECT tclienti.id, email, password, indirizzo, note, tipo FROM tclienti JOIN ttipoUtenti ON tclienti.tipoUtentiId = ttipoUtenti.id WHERE email = ? AND password = ? ;";
-        var $insertUser = "INSERT INTO tclienti(email, password, indirizzo, note, tipoUtentiId) VALUES(?, ?, ?, ?, 1);";
+        var $selectById = "SELECT * FROM tclienti WHERE id = ?;";
+        var $selectByEmailAndPassword = "SELECT * FROM tclienti WHERE email = ? AND password = ? ;";
+        var $insertUser = "INSERT INTO tclienti(email, password, indirizzo, note) VALUES(?, ?, ?, ?);";
         var $connection;
 
         public function __construct($connection){
@@ -20,7 +20,7 @@
             $result = $prepared->get_result();
             $list = [];
             if ($user = $result->fetch_assoc())
-                return new User($user['id'], $user['email'], $user['password'], $user['indirizzo'], $user['note'], $user['tipo']);
+                return new User($user['id'], $user['email'], $user['password'], $user['indirizzo'], $user['note']);
             return $list;
         }
 
@@ -31,7 +31,7 @@
             $result = $prepared->get_result();
             $list = [];
             if ($user = $result->fetch_assoc())
-                return new User($user['id'], $user['email'], $user['password'], $user['indirizzo'], $user['note'], $user['tipo']);
+                return new User($user['id'], $user['email'], $user['password'], $user['indirizzo'], $user['note']);
             return $list;
         }
 

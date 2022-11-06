@@ -3,10 +3,9 @@
 	require_once("restHandlers/LoginRestHandler.php");
 	require_once("restHandlers/SigninRestHandler.php");
 	require_once("restHandlers/AuthRestHandler.php");
-	require_once("restHandlers/SessionRestHandler.php");
 	require_once("restHandlers/CategorieRestHandler.php");
-	require_once("restHandlers/IngredientRestHandler.php");
 	require_once("restHandlers/ProductRestHandler.php");
+	require_once("restHandlers/CartRestHandler.php");
 
 	session_start();
 
@@ -63,12 +62,24 @@
 						$loginRestHandler = new ProductRestHandler();
 						$loginRestHandler->getPublished();
 						break;
+					case "publishedCat":
+						$loginRestHandler = new ProductRestHandler();
+						$loginRestHandler->getPublishedByCat($_GET['idCategoria']);
+						break;
 				}
 				break;
-			// case "adminAuth":
-			// 	!auth($_COOKIE["token"], "Admin") ? header("location: http://localhost/APPane/public/") : header("location: http://localhost/APPane/authAdmin/".$_GET["page"]);
-				
-			// 	break;
+			case "cart":
+				$view = (isset($_GET["view"]) ? $_GET["view"] : "");
+				switch($view){
+					case "all":
+						$loginRestHandler = new CartRestHandler();
+						if(isset($_SESSION['id']))
+							$loginRestHandler->selectByIdCliente();
+						else
+							$loginRestHandler->selectByToken();
+						break;
+				}
+				break;
 		}
 	}
 
@@ -84,9 +95,8 @@
 				$signinRestHandler->handleSignin($_POST['email'], $_POST['password'], $_POST['indirizzo'], $_POST['note']);
 				break;
 			case "auth":
-				$view = (isset($_POST["auth"]) ? $_POST["auth"] : "");
 				$signinRestHandler = new AuthRestHandler();
-				$signinRestHandler->handleAuth($_POST['token'], $view);
+				$signinRestHandler->handleAuth($_POST['token']);
 				break;
 			case "categories":
 				$paintsRestHandler = new CategorieRestHandler();
@@ -95,6 +105,10 @@
 			case "ingredients":
 				$paintsRestHandler = new IngredientRestHandler();
 				$paintsRestHandler->insert($_POST['nome'], $_POST['descrizione']);
+				break;
+			case "cart":
+				$paintsRestHandler = new CartRestHandler();
+				$paintsRestHandler->insert($_POST['idCliente'], $_POST['idProdotto'], $_POST['quantita']);
 				break;
 		}
 	}
@@ -120,6 +134,15 @@
 					case "byId":
 						$paintsRestHandler = new IngredientRestHandler();
 						$paintsRestHandler->updateById($_PUT["nome"], $_PUT["descrizione"], $_PUT["id"]);
+						break;
+				}
+				break;
+			case "cart":
+				$view = (isset($_PUT["update"]) ? $_PUT["update"] : "");
+				switch($view){
+					case "byToken":
+						$paintsRestHandler = new CartRestHandler();
+						$paintsRestHandler->udateIdCliente();
 						break;
 				}
 				break;

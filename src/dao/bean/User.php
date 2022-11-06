@@ -6,15 +6,13 @@
         var $password;
         var $indirizzo;
         var $note;
-        var $tipo;
 
-        public function __construct($id, $email, $password, $indirizzo, $note, $tipo){
+        public function __construct($id, $email, $password, $indirizzo, $note){
             $this->id = $id;
             $this->email = $email;
             $this->password = $password;
             $this->indirizzo = $indirizzo;
             $this->note = $note;
-            $this->tipo = $tipo;
         }
 
     }

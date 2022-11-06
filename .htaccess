@@ -6,6 +6,9 @@ RewriteRule ^admin/$ admin/index.html
 RewriteRule ^users/login src/restController.php [qsa]
 RewriteRule ^users/signin src/restController.php [qsa]
 
+RewriteRule ^cart$ src/restController.php [qsa]
+RewriteRule ^cart/list$ src/restController.php?api=cart&view=all [qsa]
+
 RewriteRule ^auth src/restController.php [qsa]
 
 RewriteRule ^categories/list src/restController.php?api=categories&view=all [qsa]
@@ -13,12 +16,9 @@ RewriteRule ^categories/insert src/restController.php [qsa]
 RewriteRule ^categories/update src/restController.php [qsa]
 RewriteRule ^categories/delete src/restController.php [qsa]
 
-RewriteRule ^ingredients/list src/restController.php?api=ingredients&view=all [qsa]
-RewriteRule ^ingredients/insert src/restController.php [qsa]
-RewriteRule ^ingredients/update src/restController.php [qsa]
-RewriteRule ^ingredients/delete src/restController.php [qsa]
 
 RewriteRule ^products/list src/restController.php?api=products&view=all [qsa]
 RewriteRule ^products/([0-9]+)$ src/restController.php?api=products&view=byId&id=$1 [qsa]
-RewriteRule ^products/published src/restController.php?api=products&view=published [qsa]
+RewriteRule ^products/published$ src/restController.php?api=products&view=published [qsa]
+RewriteRule ^products/published/([0-9]+)$ src/restController.php?api=products&view=publishedCat&idCategoria=$1 [qsa]
 

@@ -46,40 +46,14 @@
 			echo $this->formatResponse($rawData, $statusCode);
 		}
 
-		function insert($categoria) {	
+		function getPublishedByCat($idCategoria) {	
 			$userDAO  = new ProductDAO(Database::getInstance()->getConnection());
-			$rawData = $userDAO->insert($categoria);
-			
-			if($rawData) {
-				$statusCode = 200;	
+			$rawData = $userDAO->selectPublishedByCat($idCategoria);
+
+			if(empty($rawData)) {
+				$statusCode = 200;
 			} else {
-				$statusCode = 404;
-			}
-
-			echo $this->formatResponse($rawData, $statusCode);
-		}
-
-		function updateById($categoria, $id) {	
-			$userDAO  = new ProductDAO(Database::getInstance()->getConnection());
-			$rawData = $userDAO->updateById($categoria, $id);
-			
-			if($rawData) {
-				$statusCode = 200;	
-			} else {
-				$statusCode = 404;
-			}
-
-			echo $this->formatResponse($rawData, $statusCode);
-		}
-
-		function deleteById($id) {	
-			$userDAO  = new ProductDAO(Database::getInstance()->getConnection());
-			$rawData = $userDAO->deleteById($id);
-			
-			if($rawData) {
-				$statusCode = 200;	
-			} else {
-				$statusCode = 404;
+				$statusCode = 200;
 			}
 
 			echo $this->formatResponse($rawData, $statusCode);

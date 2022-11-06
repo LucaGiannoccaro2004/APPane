@@ -116,149 +116,23 @@
     margin-bottom: 5%;
 }
 
-
-/* ADMIN PAGES */
-
-#verticalNavbar{
-    width: 38%;
-    height: 100vh;
-    background-color: #5e3333;
-    display: none;
-}
-
-#profileSection{
+#container{
     width: 100%;
-    height: 38vh;
-    background-color: #5c2626;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#profileImage{
-    width: 28vh;
-    height: 28vh;
-    background-color: #ffd6b6;
-    border-radius: 100%;
-}
-
-#profileLinkGroup{
-    display: flex;
-    justify-content: space-between;
-    width: 28vh;
-}
-
-#sections{
-    list-style: none;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5%;
-}
-
-#sections a{
-    width: 50%;
-    width: 50%;
-    padding: 4% 0;
-}
-
-#sections a:hover{
-    background-color: #5c2626;
-}
-
-#sections a li{
-    text-decoration: none;
-    color: white;
-    display: flex;
-    align-items: center;
-}
-
-#sections a li img{
-    width: 2vh;
-}
-
-#sectionContent{
-    width: 100%;
-    height: 100vh;
-    background-color: white;
-}
-
-#contentNavbar{
-    background-color: #ffd6b6;
-}
-
-#menuIcon {
-    display: inline-block;
-    cursor: pointer;
-}
-  
-.bar1, .bar2, .bar3 {
-    width: 35px;
-    height: 5px;
-    background-color: #333;
-    margin: 6px 0;
-    transition: 0.4s;
-}
-
-.change .bar1 {
-    transform: translate(0, 11px) rotate(-45deg);
-}
-
-.change .bar2 {
-    opacity: 0;
-}
-
-.change .bar3 {
-    transform: translate(0, -11px) rotate(45deg);
-}
-
-#addButton{
-    width: fit-content;
-    margin-left: 20%;
-    border: 2px solid white;
-	background-color: #2ecc71;
-    color: white;
-	padding: 7px;
-	border-radius: 15px;
-}
-
-#addButton:hover{
-    width: fit-content;
-    margin-left: 20%;
-    border: 2px solid #2ecc71;
-	background-color: white;
-    color: #2ecc71;
-	padding: 7px;
-	border-radius: 15px;
-    cursor: pointer;
-}
-
-#container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 #homeContainer{
+    width: fit-content;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-}
-
-#container .element{
-    width: 60%;
-    border: 1px solid gray;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 3%;
-    margin-top: 1.5%;
 }
 
 #homeContainer .element{
-    width: 15%;
+    width: 23%;
     border: 1px solid gray;
     display: flex;
     flex-direction: column;
@@ -270,149 +144,36 @@
 
 #homeContainer .element img{
     width: 100%;
+    height: 27vh;
 }
 
-.buttonsGroup{
-    display: flex;
+#homeContainer .element h1{
+    margin: 3% 0;
 }
 
-.element button{
-    border-radius: 10px;
+#homeContainer .element p{
+    text-justify: distribute;
+    height: 18vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#homeContainer .element h2{
+    align-self: flex-start;
+    margin: 3% 0;
+}
+
+#homeContainer .element button{
+    border: 1px solid green;
+    color: green;
+    background-color: white;
     padding: 3%;
-    margin: 2%;
+    border-radius: 15px;
+    align-self: flex-end;
 }
 
-.element button:hover{
-    cursor: pointer;
-}
-
-.modifyButton{
-    border: 1px solid orange;
-    color: orange;
-}
-
-.removeButton{
-    border: 1px solid red;
+#homeContainer .element button:hover{
+    border: 1px solid white;
     color: white;
-    background-color: red;
-}
-
-
-#overlay{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	background-color: #000;
-	height: 100vh;
-	width: 100%;
-	position: fixed;
-	top: 0px;
-	opacity: 0.8;
-
-}
-
-#addForm, #modifyForm, #deleteForm{
-	background-color: white;
-	width: 30%;
-	border: 2px solid #2ecc71;
-	border-radius: 10px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#deleteForm{
-    border: 2px solid red;
-}
-
-#overlay, #addForm, #modifyForm, #deleteForm{
-    display: none;
-}
-
-.cross{
-	align-self: flex-end;
-    color: #cc2e2e;
-	font-size: 25;
-	font-weight: bold;
-	background-color: transparent;
-	border: 0
-}
-
-#addForm form, #modifyForm form, #deleteForm form{
-    width: 50%;
-}
-
-#addForm form, #modifyForm form{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-#deleteForm form{
-    height: 10vh;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-input{
-    width: 100%;
-	background-color: #fff;
-	display: block;
-	border: 2px solid #2ecc71;
-	border-radius: 10px;
-	padding: 5px;
-	margin: 5% 0;
-}
-
-.btn{
-    border: 2px solid #2ecc71;
-	background-color: white;
-    color: #2ecc71;
-	padding: 7px;
-	border-radius: 5px;
-}
-
-.btn:hover{
-	background-color: #2ecc71;
-	color: white;
-	border: 2px solid white;
-}
-
-#deleteSubmit{
-    border: 2px solid red;
-    color: red;
-}
-
-#deleteSubmit:hover{
-	background-color: red;
-	color: white;
-	border: 2px solid white;
-}
-
-#modificaIngredienti{
-    width: 100%;
-}
-
-.ingredienti{
-    height: 10vh;
-    width: fit-content;
-    border: 1px solid gray;
-    border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 15%;
-}
-
-.ingrediente{
-    background-color: rgb(177, 174, 174);
-    border-radius: 10px;
-    width: fit-content;
-    padding: 3%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    background-color: green;
 }
