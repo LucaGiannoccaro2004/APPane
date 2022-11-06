@@ -137,14 +137,14 @@
 }
 
 #homeContainer{
-    width: fit-content;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
 }
 
 #homeContainer .element{
+    margin: 1%;
     width: 23%;
     border: 1px solid gray;
     display: flex;
@@ -193,11 +193,11 @@
 
 .qty {
     width: 40px;
-    height: 25px;
+    height: 35px;
     text-align: center;
 }
-input.qtyplus { width:25px; height:25px;}
-input.qtyminus { width:25px; height:25px;}
+input.qtyplus { width:35px; height:35px;}
+input.qtyminus { width:35px; height:35px;}
 
 #cartContainer{
     width: 95%;

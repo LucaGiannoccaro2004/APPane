@@ -98,6 +98,7 @@
 			case "logout":
 				$_SESSION = array();
 				session_destroy();
+				session_start();
 				break;
 			case "auth":
 				$signinRestHandler = new AuthRestHandler();
