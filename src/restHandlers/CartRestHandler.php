@@ -47,11 +47,11 @@
 			echo $this->formatResponse($rawData, $statusCode);
 		}
 
-		function insert($idCliente, $idProdotto, $quantita) {	
+		function insert($idProdotto, $quantita) {	
 			if(!isset($_SESSION['cartToken']))
 				$_SESSION['cartToken'] = md5(uniqid(rand(), true));
 			$userDAO  = new CartDAO(Database::getInstance()->getConnection());
-			$rawData = $userDAO->insert($idCliente, $idProdotto, $quantita, $_SESSION['cartToken']);
+			$rawData = $userDAO->insert(isset($_SESSION['id']) ? $_SESSION['id'] : 0, $idProdotto, $quantita, $_SESSION['cartToken']);
 
 			if(empty($rawData)) {
 				$statusCode = 200;

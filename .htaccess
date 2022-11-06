@@ -6,7 +6,8 @@ RewriteRule ^admin/$ admin/index.html
 RewriteRule ^users/login src/restController.php [qsa]
 RewriteRule ^users/signin src/restController.php [qsa]
 
-RewriteRule ^cart$ src/restController.php [qsa]
+RewriteRule ^cart/insert$ src/restController.php [qsa]
+RewriteRule ^cart/update$ src/restController.php [qsa]
 RewriteRule ^cart/list$ src/restController.php?api=cart&view=all [qsa]
 
 RewriteRule ^auth src/restController.php [qsa]

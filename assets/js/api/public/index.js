@@ -48,14 +48,46 @@ function getItem(id){
             button.textContent = "Aggiungi al Carrello";
             button.id="btnAggiungiCarrello";
             button.addEventListener("click", ()=>{
-                
+                let formData = new FormData();
+                formData.append("api", "cart");
+                formData.append("idProdotto", result[i].id);
+                formData.append("quantita", 1);
+                new Xhr("POST", "cart/insert").makeRequest(()=>{}, "application/json", formData);
+                qtyContainer.style.display = "flex";
+                button.style.display = "none";
             });
+
+            let qtyContainer = document.createElement("div");
+            qtyContainer.classList.add("qtyContainer");
+
+
+            let minus = document.createElement("input");
+            minus.value = "-";
+            minus.classList.add("qtyminus");
+            minus.classList.add("minus");
+            minus.type = "button";
+            let plus = document.createElement("input");
+            plus.value = "+";
+            plus.classList.add("qtyplus");
+            plus.classList.add("plus");
+            plus.type = "button";
+            let quantity = document.createElement("input");
+            quantity.value = 0;
+            quantity.classList.add("qty");
+            quantity.type = "button";
+
+            qtyContainer.appendChild(minus);
+            qtyContainer.appendChild(quantity);
+            qtyContainer.appendChild(plus);
+
+            qtyContainer.style.display = "none";
     
             element.appendChild(img);
             element.appendChild(nome);
             element.appendChild(descrizione);
             element.appendChild(prezzo);
             element.appendChild(button);
+            element.appendChild(qtyContainer);
             container.appendChild(element);
         }
     }

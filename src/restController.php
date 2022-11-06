@@ -107,8 +107,9 @@
 				$paintsRestHandler->insert($_POST['nome'], $_POST['descrizione']);
 				break;
 			case "cart":
+				echo "cioa";
 				$paintsRestHandler = new CartRestHandler();
-				$paintsRestHandler->insert($_POST['idCliente'], $_POST['idProdotto'], $_POST['quantita']);
+				$paintsRestHandler->insert($_POST['idProdotto'], $_POST['quantita']);
 				break;
 		}
 	}

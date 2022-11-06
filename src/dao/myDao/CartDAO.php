@@ -4,13 +4,15 @@
 
     class CartDAO{
 
-        var $selectByIdCliente = "SELECT tcarrello.id, tcarrello.idCliente, tcarrello.idProdotto, tcarrello.quantita, tcarrello.token, tprodotti.id AS idProdotto, tprodotti.nome, tprodotti.descrizione, tprodotti.prezzo, tprodotti.foto, tprodotti.abilitato, tprodotti.idCategoria
+        var $selectByIdCliente = "SELECT tcarrello.id, tcarrello.idCliente, tcarrello.idProdotto, tcarrello.quantita, tcarrello.token, tprodotti.id AS idProdotto, tprodotti.nome, tprodotti.descrizione, tprodotti.prezzo, tprodotti.foto, tprodotti.abilitato, tcategorie.categoria
                                         FROM tcarrello
                                         JOIN tprodotti ON tcarrello.idProdotto = tprodotti.id
+                                        JOIN tcategorie ON tprodotti.idCategoria = tcategorie.id
                                         WHERE tcarrello.idCliente = ?;";
-        var $selectByToken = "SELECT tcarrello.id, tcarrello.idCliente, tcarrello.idProdotto, tcarrello.quantita, tcarrello.token, tprodotti.id AS idProdotto, tprodotti.nome, tprodotti.descrizione, tprodotti.prezzo, tprodotti.foto, tprodotti.abilitato, tprodotti.idCategoria
+        var $selectByToken = "SELECT tcarrello.id, tcarrello.idCliente, tcarrello.idProdotto, tcarrello.quantita, tcarrello.token, tprodotti.id AS idProdotto, tprodotti.nome, tprodotti.descrizione, tprodotti.prezzo, tprodotti.foto, tprodotti.abilitato, tcategorie.categoria
                                         FROM tcarrello
                                         JOIN tprodotti ON tcarrello.idProdotto = tprodotti.id
+                                        JOIN tcategorie ON tprodotti.idCategoria = tcategorie.id
                                         WHERE tcarrello.token = ?;";
 
         var $udateIdCliente = "UPDATE `tcarrello` SET `idCliente`= ? WHERE token = ?";
@@ -29,7 +31,7 @@
             $list = [];
             if ($result->num_rows > 0)
                 while($user = $result->fetch_assoc())
-                    return new Cart($user['id'], $user['idCliente'], new Product($user['idProdotto'], $user['categoria'], $user['nome'], $user['descrizione'], $user['prezzo'], $user['abilitato'], $user['foto']), $user['quantita'], $user['token']);
+                    $list[] = new Cart($user['id'], $user['idCliente'], new Product($user['idProdotto'], $user['categoria'], $user['nome'], $user['descrizione'], $user['prezzo'], $user['abilitato'], $user['foto']), $user['quantita'], $user['token']);
             return $list;
         }
 
@@ -41,7 +43,7 @@
             $list = [];
             if ($result->num_rows > 0)
                 while($user = $result->fetch_assoc())
-                    return new Cart($user['id'], $user['idCliente'], new Product($user['idProdotto'], $user['categoria'], $user['nome'], $user['descrizione'], $user['prezzo'], $user['abilitato'], $user['foto']), $user['quantita'], $user['token']);
+                    $list[] =  new Cart($user['id'], $user['idCliente'], new Product($user['idProdotto'], $user['categoria'], $user['nome'], $user['descrizione'], $user['prezzo'], $user['abilitato'], $user['foto']), $user['quantita'], $user['token']);
             return $list;
         }
 
