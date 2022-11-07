@@ -118,7 +118,7 @@
 				break;
 			case "ordineMaster":
 				$paintsRestHandler = new OrdineRestHandler();
-				$paintsRestHandler->insertMaster($_POST['numero'], $_POST['nota']);
+				$paintsRestHandler->insertMaster(uniqid(rand(), true), $_POST['nota']);
 				break;
 			case "ordineDetail":
 				$paintsRestHandler = new OrdineRestHandler();

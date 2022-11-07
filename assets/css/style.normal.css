@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Comfortaa', cursive;
 }
 
 #header {
@@ -13,8 +14,23 @@
     align-items: center;
 }
 
-#logo img {
-    height: 15vh;
+#header a{
+    text-decoration: none;
+    margin-left: 3%;
+}
+
+#logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 13vh;
+}
+
+#logo h1{
+    color: #5c2626;
+    font-size: 400%;
+    font-family: 'Oleo Script', cursive;
 }
 
 .row{
@@ -57,11 +73,20 @@
 }
 
 #navbar {
+    position: sticky;
+    top: 0;
     width: 100%;
     height: 7vh;
     background-color: #5c2626;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+}
+
+#navbar h2{
+    color: white;
+    margin-right: 3%;
+    font-family: 'Pacifico', cursive;
 }
 
 #categories {
@@ -134,6 +159,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #ffd6b6;
 }
 
 #homeContainer{
@@ -153,6 +179,7 @@
     align-items: center;
     padding: 1%;
     margin-top: 1.5%;
+    background-color: white;
 }
 
 #homeContainer .element img{
@@ -165,7 +192,7 @@
 }
 
 #homeContainer .element p{
-    text-justify: distribute;
+    text-align: justify;
     height: 18vh;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -201,6 +228,7 @@ input.qtyminus { width:35px; height:35px;}
 
 #cartContainer{
     width: 95%;
+    min-height: 63vh;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -215,6 +243,7 @@ input.qtyminus { width:35px; height:35px;}
     align-items: center;
     padding: 1%;
     margin-top: 1.5%;
+    background-color: white;
 }
 
 #cartContainer .element .info{
@@ -305,6 +334,7 @@ input.qtyminus { width:35px; height:35px;}
 #totale{
     align-self: flex-end;
     margin-right: 2.5%;
+    margin-top: 3%;
 }
 
 .zoom {
@@ -324,3 +354,15 @@ input.qtyminus { width:35px; height:35px;}
       right: 40px;
     }
   }
+
+#footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7vh;
+    background-color: #5c2626;
+}
+
+#footer h2{
+    color: white;
+}

@@ -1,12 +1,27 @@
-/* <div class = "element">
-    <img src = "..\assets\media\images\colorlogo.png">
-    <div class = "info">
-        <h1>Pane</h1>
-        <p>Cane Pazzo Pazzo Cane, Cane Pazzo Pazzo Cane, Cane Pazzo Pazzo Cane, Cane Pazzo Pazzo Cane, Cane Pazzo Pazzo Cane</p>
-        <h2>1€</h2>
-    </div>
-    <button>Rimuovi</button>
-</div> */
+if(localStorage.getItem("token") != undefined){
+    document.getElementById("login").textContent = "Ciao, " + localStorage.getItem("email");
+    document.getElementById("signin").style.display = "none";
+    document.getElementById("logout").style.display = "block";
+    document.getElementById("login").addEventListener("mouseover", ()=>{
+        document.getElementById("login").style.border = "1px solid #ffd6b6"
+        document.getElementById("login").href = "";
+    })
+}
+
+document.getElementById("logout").addEventListener("click", ()=>{
+    localStorage.clear();
+    document.getElementById("login").textContent = "Login";
+    document.getElementById("signin").style.display = "block";
+    document.getElementById("logout").style.display = "none";
+    document.getElementById("login").addEventListener("mouseover", ()=>{
+        document.getElementById("login").style.border = "1px solid #5c2626"
+        document.getElementById("login").href = "login.html";
+    })
+    let formData = new FormData();
+    formData.append("api", "logout");
+    new Xhr("POST", "users/logout").makeRequest(()=>{}, "application/json", formData); 
+    
+});
 
 new Xhr("GET", "cart/list").makeRequest(handleResponse, "application/json", undefined);
 
@@ -80,6 +95,7 @@ function handleResponse(){
                     formData.append("e", "e");
                     new Xhr("PUT", "cart/update").makeRequest(()=>{}, "application/json", formData);
                 }
+                location.reload();
             })
             let plus = document.createElement("input");
             plus.value = "+";
@@ -87,6 +103,7 @@ function handleResponse(){
             plus.classList.add("plus");
             plus.type = "button";
             plus.addEventListener("click", ()=>{
+                
                 quantity.value = parseInt(quantity.value) + 1;
                 let formData = new FormData();
                 formData.append("api", "cart");
@@ -95,6 +112,7 @@ function handleResponse(){
                 formData.append("quantita", quantity.value)
                 formData.append("e", "e");
                 new Xhr("PUT", "cart/update").makeRequest(()=>{}, "application/json", formData);
+                location.reload();
             })
 
 
@@ -132,7 +150,6 @@ function handleResponse(){
         }
         let formData = new FormData();
         formData.append("api", "ordineMaster");
-        formData.append("numero", 0);
         formData.append("nota", localStorage.getItem("note"));
         new Xhr("POST", "ordineMaster/insert").makeRequest(()=>{}, "application/json", formData);
 
