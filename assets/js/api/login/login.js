@@ -15,6 +15,6 @@ function handleLoginResponse(){
         localStorage.setItem("email", result.email);
         localStorage.setItem("indirizzo", result.indirizzo);
         localStorage.setItem("note", result.note);
-        location.href = "./index.html"
+        location.href = "./success.html";
     }
 }

@@ -32,11 +32,19 @@ new Xhr("GET", "categories/list").makeRequest(handleCategories, "application/jso
 function handleCategories(){
     let result = JSON.parse(this.response);
     for(let i=0; i<result.length; i++){
-        if(i==0)
-            getItem(result[i].id);
         let element = document.createElement("li");
-        element.addEventListener("click", ()=>{
+        if(i==0){
+            element.style.border = "1px solid #ffd6b6";
             getItem(result[i].id);
+        }
+        
+        element.addEventListener("click", ()=>{
+            if(categories.children[i].style.border != "1px solid #ffd6b6"){
+                for(let i=0; i<categories.children.length; i++)
+                    categories.children[i].style.border = "1px solid #5c2626";
+                element.style.border = "1px solid #ffd6b6";
+                getItem(result[i].id);
+            }
         });
         element.textContent = result[i].categoria;
         categories.appendChild(element);
@@ -64,7 +72,7 @@ function getItem(id){
             element.classList.add("element");
     
             let img = document.createElement("img");
-            img.src = "../assets/media/" + result[i].foto;
+            img.src = "assets/media/" + result[i].foto;
     
             let nome = document.createElement("h1");
             nome.textContent = result[i].nome;
@@ -201,17 +209,20 @@ function getItem(id){
     }
 
     function compare(){
-        let result = JSON.parse(this.response);
-        if(!Array.isArray(result))
-            result = [result];
-        for(let i=0; i<document.getElementById("homeContainer").children.length; i++){
-            let tmp = document.getElementById("homeContainer").children[i];
-            for(let j=0; j<result.length; j++)
-                if(document.getElementById("homeContainer").children[i].getAttribute("id") == result[j].idProdotto.id){
-                    document.getElementById("homeContainer").children[i].children[5].style.display = "flex";
-                    document.getElementById("homeContainer").children[i].children[5].children[1].value = result[j].quantita;
-                    document.getElementById("homeContainer").children[i].children[4].style.display = "none";
-                }
+        let result;
+        if(this.response != ""){
+            result = JSON.parse(this.response);
+            if(!Array.isArray(result))
+                result = [result];
+            for(let i=0; i<document.getElementById("homeContainer").children.length; i++){
+                let tmp = document.getElementById("homeContainer").children[i];
+                for(let j=0; j<result.length; j++)
+                    if(document.getElementById("homeContainer").children[i].getAttribute("id") == result[j].idProdotto.id){
+                        document.getElementById("homeContainer").children[i].children[5].style.display = "flex";
+                        document.getElementById("homeContainer").children[i].children[5].children[1].value = result[j].quantita;
+                        document.getElementById("homeContainer").children[i].children[4].style.display = "none";
+                    }
+            }
         }
     }
 }

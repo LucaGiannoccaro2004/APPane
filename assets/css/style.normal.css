@@ -1,368 +1,540 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Comfortaa', cursive;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Comfortaa", cursive;
 }
 
 #header {
-    width: 100%;
-    height: 15vh;
-    background-color: #ffd6b6;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  height: 15vh;
+  background-color: #ffd6b6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#header a{
-    text-decoration: none;
-    margin-left: 3%;
+#header a {
+  text-decoration: none;
+  margin-left: 3%;
 }
 
-#logo{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 13vh;
+#logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 13vh;
 }
 
-#logo h1{
-    color: #5c2626;
-    font-size: 400%;
-    font-family: 'Oleo Script', cursive;
+#logo h1 {
+  color: #5c2626;
+  font-size: 400%;
+  font-family: "Oleo Script", cursive;
 }
 
-.row{
-    display: flex;
-    width: fit-content;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 2%;
+.row {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 2%;
 }
-
 
 #cart {
-    height: 25vh;
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 10%;
+  height: 25vh;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 10%;
 }
 
 #cartImg {
-    height: 8vh;     
+  height: 8vh;
 }
 
-#cart a{
-    border: 1px solid #ffd6b6;
-    text-decoration: none;
-    color: black;
-    font-size: 150%;
-    padding: 3% 5%;
+#cart a {
+  border: 1px solid #ffd6b6;
+  text-decoration: none;
+  color: black;
+  font-size: 150%;
+  padding: 3% 5%;
 }
 
-#logout{
-    display: none;
+#logout {
+  display: none;
 }
 
-#cart a:hover{
-    border: 1px solid #5c2626;
-    border-radius: 10px;
+#cart a:hover {
+  border: 1px solid #5c2626;
+  border-radius: 10px;
 }
 
 #navbar {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 7vh;
-    background-color: #5c2626;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 7vh;
+  background-color: #5c2626;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#navbar h2{
-    color: white;
-    margin-right: 3%;
-    font-family: 'Pacifico', cursive;
+#navbar h2 {
+  color: white;
+  margin-right: 3%;
+  font-family: "Pacifico", cursive;
 }
 
 #categories {
-    width: 50%;
-    list-style: none;
-    display: flex;
+  width: 50%;
+  list-style: none;
+  display: flex;
 }
 
 #categories li {
-    border: 1px solid #5c2626;
-    color: #ffd6b6;
-    margin: 0 3%;
-    padding: 1% 3%;
+  border: 1px solid #5c2626;
+  color: #ffd6b6;
+  margin: 0 3%;
+  padding: 1% 3%;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 #categories li:hover {
-    border: 1px solid #ffd6b6;
-    border-radius: 10px;
-    cursor: pointer;
+  border: 1px solid #ffd6b6;
+  border-radius: 10px;
 }
 
-#pageContainer{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.active {
+  border: 1px solid #ffd6b6;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-#form{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 40%;
-    padding: 3%;
+#pageContainer {
+  width: 100%;
+  height: 78vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffd6b6;
 }
 
-#form input{
-    margin-top: 1%;
-    margin-bottom: 5%;
-    padding: 3%;
+#form {
+  display: flex;
+  flex-direction: column;
+  border: 8px solid #5c2626;
+  border-radius: 10px;
+  width: 40%;
+  padding: 3%;
 }
 
-#form #submit{
-    width: fit-content;
-    padding: 3% 7%;
-    border-radius: 15px;
-    border: 1px solid green;
-    color: green;
-    background: white;
+#form label {
+  color: #5c2626;
 }
 
-#form #submit:hover{
-    border: 1px solid white;
-    color: white;
-    background: green;
+#form input {
+  height: 6vh;
+  border: 3px solid #5c2626;
+  margin-top: 1%;
+  margin-bottom: 3%;
+  padding: 3%;
+  outline: none;
 }
 
-#wrongCredentials{
-    display: none;
-    color: red;
-    border: 1px solid red;
-    background-color: rgb(241, 149, 149);
-    padding: 3%;
-    margin-bottom: 5%;
+#form input[type="email"],
+#form input[type="password"],
+#form input[type="text"] {
+  background-color: #ffd6b6;
 }
 
-#container{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffd6b6;
+#form input:focus {
+  border: 6px solid #5c2626;
+  background-color: white;
 }
 
-#homeContainer{
-    width: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+.formRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.formRow div {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
 }
 
-#homeContainer .element{
-    margin: 1%;
-    width: 23%;
-    border: 1px solid gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1%;
-    margin-top: 1.5%;
-    background-color: white;
+.formRow div input {
+  width: 100%;
 }
 
-#homeContainer .element img{
-    width: 100%;
-    height: 27vh;
+#form #submit {
+  width: fit-content;
+  padding: 3% 7%;
+  border-radius: 15px;
+  border: 1px solid green;
+  color: green;
+  background: white;
 }
 
-#homeContainer .element h1{
-    margin: 3% 0;
+#form #submit:hover {
+  border: 1px solid white;
+  color: white;
+  background: green;
 }
 
-#homeContainer .element p{
-    text-align: justify;
-    height: 18vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
+#wrongCredentials {
+  display: none;
+  color: red;
+  border: 1px solid red;
+  background-color: rgb(241, 149, 149);
+  padding: 3%;
+  margin-bottom: 5%;
 }
 
-#homeContainer .element h2{
-    align-self: flex-start;
-    margin: 3% 0;
+#container {
+  width: 100%;
+  min-height: 71vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffd6b6;
 }
 
-#homeContainer .element button{
-    border: 1px solid green;
-    color: green;
-    background-color: white;
-    padding: 3%;
-    border-radius: 15px;
-    align-self: flex-end;
+#homeContainer {
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-#homeContainer .element button:hover{
-    border: 1px solid white;
-    color: white;
-    background-color: green;
+#homeContainer .element {
+  margin: 1%;
+  width: 23%;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  margin-top: 1.5%;
+  background-color: white;
+}
+
+#homeContainer .element img {
+  width: 100%;
+  height: 27vh;
+}
+
+#homeContainer .element h1 {
+  margin: 3% 0;
+}
+
+#homeContainer .element p {
+  text-align: justify;
+  height: 25vh;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#homeContainer .element h2 {
+  align-self: flex-start;
+  margin: 3% 0;
+}
+
+#homeContainer .element button {
+  border: 1px solid green;
+  color: green;
+  background-color: white;
+  padding: 3%;
+  border-radius: 15px;
+  align-self: flex-end;
+}
+
+#homeContainer .element button:hover {
+  border: 1px solid white;
+  color: white;
+  background-color: green;
 }
 
 .qty {
-    width: 40px;
-    height: 35px;
-    text-align: center;
+  width: 40px;
+  height: 35px;
+  text-align: center;
 }
-input.qtyplus { width:35px; height:35px;}
-input.qtyminus { width:35px; height:35px;}
-
-#cartContainer{
-    width: 95%;
-    min-height: 63vh;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+input.qtyplus {
+  width: 35px;
+  height: 35px;
+}
+input.qtyminus {
+  width: 35px;
+  height: 35px;
 }
 
-#cartContainer .element{
-    width: 100%;
-    border: 1px solid gray;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1%;
-    margin-top: 1.5%;
-    background-color: white;
+#sections {
+  display: flex;
 }
 
-#cartContainer .element .info{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center
+#totaleContainer {
+  padding-top: 3%;
+  text-align: center;
+  min-width: 18%;
 }
 
-#cartContainer .element img{
-    width: 25%;
-    height: 35vh;
+#totaleContainer h2 {
+  margin: 3% 0;
 }
 
-#cartContainer .element .info h1{
-    margin: 3% 0;
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
-#cartContainer .element .info p{
-    text-justify: distribute;
-    height: 18vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
+#nota {
+  height: 10vh;
+  resize: none;
+  margin: 5% 0;
+  background-color: #ffd6b6;
+  border: 4px solid #5c2626;
+  outline: none;
+  padding: 2%;
 }
 
-#cartContainer .element .info h2{
-    align-self: flex-start;
-    margin: 3% 0;
+#nota:focus {
+  border: 6px solid #5c2626;
+  background-color: white;
 }
 
-#cartContainer .element button{
-    border: 1px solid red;
-    color: red;
-    background-color: white;
-    padding: 1%;
-    border-radius: 15px;
-    align-self: flex-end;
+#cartContainer {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-#cartContainer .element button:hover{
-    border: 1px solid white;
-    color: white;
-    background-color: red;
+#empty{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  display: none;
 }
 
-#submitOrder{
-    border: 1px solid green;
-    color: green;
-    background-color: white;
-    padding: 1%;
-    border-radius: 15px;
-    align-self: flex-end;
-    margin: 2.5%;
+#empty img{
+  width: 30%;
+  margin: 3% 0;
 }
 
-#submitOrder:hover{
-    border: 1px solid white;
-    color: white;
-    background-color: green;
+#empty a{
+  text-decoration: none;
+  background-color: white;
+  color: green;
+  border: 1px solid green;
+  padding: 3%;
+  border-radius: 15px;
+}
+
+#empty a:hover{
+  background-color: green;
+  color: white;
+  border: 1px solid green;
+}
+
+#cartContainer .element {
+  width: 95%;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  margin: 1.5% 0;
+  background-color: white;
+}
+
+#cartContainer .element .info {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cartContainer .element img {
+  width: 30%;
+  height: 35vh;
+}
+
+#cartContainer .element .info h1 {
+  margin: 3% 0;
+}
+
+#cartContainer .element .info p {
+  text-align: justify;
+  height: 18vh;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#cartContainer .element .info h2 {
+  align-self: flex-start;
+  margin: 3% 0;
+}
+
+#cartContainer .element button {
+  border: 1px solid red;
+  color: red;
+  background-color: white;
+  padding: 1%;
+  border-radius: 15px;
+  align-self: flex-end;
+}
+
+#cartContainer .element button:hover {
+  border: 1px solid white;
+  color: white;
+  background-color: red;
+}
+
+#submitOrder1,
+#submitOrder2 {
+  border: 1px solid green;
+  color: green;
+  background-color: white;
+  padding: 1%;
+  border-radius: 15px;
+  align-self: flex-end;
+  margin: 2.5%;
+}
+
+#submitOrder2 {
+  padding: 5%;
+}
+
+#submitOrder1:hover,
+#submitOrder2:hover {
+  border: 1px solid white;
+  color: white;
+  background-color: green;
 }
 
 #logCart {
-    height: 25vh;
-    width: 15%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 1%;
+  height: 25vh;
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 1%;
 }
 
 #logCart img {
-    height: 45%; 
-    margin: 1vh;
+  height: 45%;
+  margin: 1vh;
 }
 
-#logCart a{
-    text-decoration: none;
-    color: black;
-    font-size: 150%;
-    padding: 3% 5%;
+#logCart a {
+  text-decoration: none;
+  color: black;
+  font-size: 150%;
+  padding: 3% 5%;
 }
 
-#logCart a:hover{
-    border: 1px solid #5c2626;
-    border-radius: 10px;
+#logCart a:hover {
+  border: 1px solid #5c2626;
+  border-radius: 10px;
 }
 
-#totale{
-    align-self: flex-end;
-    margin-right: 2.5%;
-    margin-top: 3%;
+#totale {
+  align-self: flex-end;
+  margin-right: 2.5%;
+  margin-top: 3%;
 }
 
 .zoom {
-    position: absolute;
-    width: 40px;
-    opacity: 0;
-    animation: zoom 1s linear forwards;
+  position: absolute;
+  width: 40px;
+  opacity: 0;
+  animation: zoom 1s linear forwards;
 }
-  
-  @keyframes zoom {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-      top: 40px;
-      right: 40px;
-    }
+
+@keyframes zoom {
+  from {
+    opacity: 1;
   }
-
-#footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 7vh;
-    background-color: #5c2626;
+  to {
+    opacity: 0;
+    top: 40px;
+    right: 40px;
+  }
 }
 
-#footer h2{
-    color: white;
+#footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7vh;
+  background-color: #5c2626;
+}
+
+#footer h2 {
+  color: white;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+}
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+.checkmark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  box-shadow: inset 0px 0px 0px #7ac142;
+  animation: fill 0.4s ease-in-out 0.4s forwards,
+    scale 0.3s ease-in-out 0.9s both;
+}
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes scale {
+  0%,
+  100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
 }

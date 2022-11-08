@@ -20,5 +20,6 @@ submit.addEventListener("click", ()=>{
         formData.append('note', note.value);
         formData.append('api', 'signin');
         new Xhr("POST", "users/signin").makeRequest(function(){}, "application/json", formData);
+        location.href = "./success.html";
     }
 });

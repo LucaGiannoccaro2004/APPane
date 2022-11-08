@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="assets/js/api/signin/signin.js" defer></script>
+    <script src="assets/js/Xhr.js"></script>
+    <link rel="stylesheet" href="assets/css/style.normal.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id = "header">
+        <a href="index.html">
+            <div id="logo">
+                <h1>APPANE</h1>
+            </div>
+        </a>
+        <div class="row">
+            <div id = "cart">
+                <a href="login.html" id="login">Login</a>
+                <a href="signin.html" id="signin">Signin</a>
+                <a href="" id="logout">logout</a>
+            </div>
+            <a href="./cart.html"><img src = "assets\media\images\cart.png" id="cartImg"></a>
+        </div>
+    </div>
+
+    <div id = "navbar">
+        <ul id = "categories"></ul>
+        <h2>"Il pane più buono, sempre a casa tua"</h2>
+    </div>
+
+    <div id="pageContainer">
+        <div id="form">
+
+            <div id="wrongCredentials">
+                ! Email o password errati
+            </div>
+    
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Email">
+    
+            <div class="formRow">
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" placeholder="Password">
+                </div>
+                <div>
+                    <label for="password">Conferma Password:</label>
+                    <input type="password" name="confermaPassword" id="confermaPassword" placeholder="Conferma Password">
+                </div>
+            </div>
+    
+            <label for="indirizzo">Indirizzo:</label>
+            <input type="text" name="indirizzo" id="indirizzo" placeholder="Indirizzo">
+    
+            <label for="note">Note:</label>
+            <input type="text" name="note" id="note" placeholder="Note">
+    
+            <input type="submit" value="Sign In" id="submit">
+            <p>Hai già un account? <a href="./login.html">Accedi</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
