@@ -1,3 +1,7 @@
+if(localStorage.getItem("quantita") != undefined){
+    document.getElementById("cartNumber").textContent = localStorage.getItem("quantita");
+}
+
 document.getElementById("submit").addEventListener("click", ()=>{
     let formData = new FormData();
     formData.append("api", "login");

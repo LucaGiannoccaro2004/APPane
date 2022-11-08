@@ -23,3 +23,7 @@ submit.addEventListener("click", ()=>{
         location.href = "./success.html";
     }
 });
+
+if(localStorage.getItem("quantita") != undefined){
+    document.getElementById("cartNumber").textContent = localStorage.getItem("quantita");
+}

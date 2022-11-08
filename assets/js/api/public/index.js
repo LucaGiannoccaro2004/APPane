@@ -128,6 +128,8 @@ function getItem(id){
                 formData.append("idProdotto", result[i].id);
                 formData.append("quantita", 1);
                 new Xhr("POST", "cart/insert").makeRequest(()=>{}, "application/json", formData);
+                document.getElementById("cartNumber").textContent = parseInt(document.getElementById("cartNumber").textContent) + 1;
+                localStorage.setItem("quantita", document.getElementById("cartNumber").textContent);
                 qtyContainer.style.display = "flex";
                 button.style.display = "none";
             });
@@ -148,6 +150,8 @@ function getItem(id){
             minus.type = "button";
             minus.addEventListener("click", ()=>{
                 quantity.value = parseInt(quantity.value) - 1;
+                document.getElementById("cartNumber").textContent = parseInt(document.getElementById("cartNumber").textContent) - 1;
+                localStorage.setItem("quantita", document.getElementById("cartNumber").textContent);
                 if(quantity.value == 0){
                     quantity.value = 1;
                     let formData = new FormData();
@@ -174,6 +178,8 @@ function getItem(id){
             plus.classList.add("plus");
             plus.type = "button";
             plus.addEventListener("click", ()=>{
+                document.getElementById("cartNumber").textContent = parseInt(document.getElementById("cartNumber").textContent) + 1;
+                localStorage.setItem("quantita", document.getElementById("cartNumber").textContent);
                 quantity.value = parseInt(quantity.value) + 1;
                 let formData = new FormData();
                 formData.append("api", "cart");
@@ -214,15 +220,21 @@ function getItem(id){
             result = JSON.parse(this.response);
             if(!Array.isArray(result))
                 result = [result];
+            let quantita = 0;
             for(let i=0; i<document.getElementById("homeContainer").children.length; i++){
-                let tmp = document.getElementById("homeContainer").children[i];
-                for(let j=0; j<result.length; j++)
+                quantita=0;
+                for(let j=0; j<result.length; j++){
+                    quantita += result[j].quantita;
                     if(document.getElementById("homeContainer").children[i].getAttribute("id") == result[j].idProdotto.id){
                         document.getElementById("homeContainer").children[i].children[5].style.display = "flex";
                         document.getElementById("homeContainer").children[i].children[5].children[1].value = result[j].quantita;
                         document.getElementById("homeContainer").children[i].children[4].style.display = "none";
                     }
+                }
+
             }
+            localStorage.setItem("quantita", quantita);
+            document.getElementById("cartNumber").textContent = quantita;
         }
     }
 }

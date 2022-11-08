@@ -1,3 +1,5 @@
+
+
 if(localStorage.getItem("token") != undefined){
     document.getElementById("login").textContent = "Ciao, " + localStorage.getItem("email");
     document.getElementById("signin").style.display = "none";
